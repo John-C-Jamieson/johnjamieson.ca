@@ -1,6 +1,10 @@
 ---
-// A placeholder until the real home page (BUILD step 11).
+// A placeholder until the real home page (BUILD step 11). Loading the
+// content here means every build checks it.
 import { Font } from "astro:assets";
+import { loadContent } from "../lib/content.ts";
+
+const { resume, site } = loadContent();
 ---
 
 <!doctype html>
@@ -8,11 +12,14 @@ import { Font } from "astro:assets";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>John Jamieson</title>
+    <title>{resume.basics.name}</title>
+    <meta name="description" content={site.description} />
     <Font cssVariable="--font-sans" preload />
   </head>
   <body>
-    <h1>John Jamieson</h1>
+    <h1>{resume.basics.name}</h1>
+    <p>{resume.basics.label}</p>
+    <p>{site.hero.headline}</p>
     <p>The new site is being built.</p>
   </body>
 </html>

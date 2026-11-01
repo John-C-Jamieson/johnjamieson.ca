@@ -1,0 +1,69 @@
+# The site's own words (ARCHITECTURE §4). They frame the facts in
+# content/resume.json but add none. The build checks that:
+#   - every number here appears in resume.json;
+#   - each figure and work card quotes the one bullet its `find` phrase
+#     matches;
+#   - every job and break sits in exactly one phase.
+#
+# DRAFT: placeholder words, until BUILD step 10 writes them properly for
+# John's approval.
+
+description: >-
+  John Jamieson, Data & BI Analyst in Toronto: SQL reporting, dashboards and
+  data automation, with a background in finance.
+
+hero:
+  headline: Turning financial data into reliable, decision-ready answers.
+  intro: >-
+    I build the reporting, dashboards and automated data processes that
+    businesses run on, and I speak finance as well as SQL.
+
+figures:
+  - value: "30+"
+    label: reporting and data-extract requests resolved in just over six months
+    source: { job: First National, find: "30+ resolved" }
+  - value: "459"
+    label: document events traced through undocumented data for one auditable report
+    source: { job: First National, find: "459-event" }
+  - value: "300+"
+    label: records whose identifier history was rebuilt from audit logs
+    source: { job: First National, find: "300+ records" }
+  - value: "44%"
+    label: less code after consolidating a production program
+    source: { job: CIBC, find: "44% reduction" }
+
+work:
+  - title: From a vague request to an auditable report
+    source: { job: First National, find: "459-event" }
+  - title: Dashboards leadership relied on
+    source: { job: CIBC, find: "eazyBI" }
+  - title: A revenue system across currencies and entities
+    source: { job: Entertainment One, find: "revenue and cost-of-sales" }
+  - title: An ERP migration, end to end
+    source: { job: Circle of Care, find: "Dynamics (GP)" }
+
+phases:
+  - label: Finance and accounting
+    jobs: [Salumatics, Circle of Care, Entertainment One]
+  - label: Retraining
+    jobs: [Career Retraining]
+  - label: Systems and data
+    jobs: [CIBC, Professional Development, First National]
+
+principles:
+  - title: Define the question first
+    text: >-
+      Vague requests become testable definitions: source, grain, date logic
+      and duplicate rules, settled before the query is written.
+  - title: Leave an audit trail
+    text: >-
+      Results someone else can check: auditable extracts, saved queries and
+      the documentation to rerun them.
+  - title: Automate the second time
+    text: >-
+      Work that repeats becomes a process, from the month-end close to
+      journal-entry uploads.
+  - title: Speak finance and SQL
+    text: >-
+      Years in accounting mean the numbers get read the way the business
+      reads them.

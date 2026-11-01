@@ -368,9 +368,9 @@ itself), so they need no build step.
 | Types and templates (`astro check`) | `npm run check` | Every push | The build |
 | Content contract (`resume.json`, `site.yaml`) | `npm run sync`, every build | Every build | The sync or the build |
 | Facts: numbers and bullet references in `site.yaml` | Every build | Every build | The build |
-| Privacy: phone, email, address, postal code | `npm run sync`, `npm run check` | Built pages | The sync or the deploy |
-| Internal links resolve | `npm run check` | Built pages | The deploy |
-| No symlinks in the built site | — | Before publishing | The deploy; the server checks again |
+| Privacy: phone, email, address, postal code | `npm run sync`, `npm run check`, every build | Every build | The sync or the build |
+| Internal links resolve | Every build | Every build | The build |
+| No symlinks and no scripts (D-9) in the built site | Every build | Every build | The build; the server checks symlinks again |
 | Tests of the checks themselves | `npm test` | Every push | The deploy |
 | This repo's copy matches Career's | `npm run sync -- --check` | Not possible: GitHub can't see Career | Nothing; it only reports |
 

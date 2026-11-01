@@ -1,0 +1,179 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "John Jamieson",
+    "label": "Data & BI Analyst — Financial Systems",
+    "tagline": "SQL · Reporting & Dashboards · Data Automation",
+    "url": "https://johnjamieson.ca",
+    "summary": "Data and BI analyst who builds the reporting, dashboards, and automated data processes that businesses run on. Strong SQL foundation — currently writing SQL every day against MS SQL Server in financial services — with a decade of turning messy financial and operational data into reliable, decision-ready datasets. Pairs hands-on data work (SQL, BI/reporting, automation) with deep finance-domain knowledge that most data candidates don't have.",
+    "location": {
+      "city": "Toronto",
+      "region": "Ontario",
+      "countryCode": "CA"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "john-c-jamieson",
+        "url": "https://linkedin.com/in/john-c-jamieson"
+      },
+      {
+        "network": "GitHub",
+        "username": "John-C-Jamieson",
+        "url": "https://github.com/John-C-Jamieson"
+      }
+    ]
+  },
+  "work": [
+    {
+      "type": "job",
+      "name": "First National",
+      "location": "Toronto, Ontario",
+      "position": "Junior AppOps Technician, Application Development",
+      "positionNote": "financial services (mortgage lender)",
+      "startDate": "2025-11",
+      "highlights": [
+        "Write SQL against MS SQL Server for ad-hoc reporting and data-extract requests: 30+ resolved in just over six months across 5+ business areas, including mortgage operations, broker relationships, residential taxes, and transformation projects.",
+        "Turn vague requests into testable report definitions (source, grain, date logic, status and duplicate rules); e.g., delivered a 459-event, 288-transaction document-activity report from undocumented application data as an auditable Excel extract.",
+        "Reconstructed historical identifier changes for 300+ records from field-level audit logs with read-only SQL; normalized inconsistent null and placeholder values, preserved multi-step histories, and resolved every populated record.",
+        "Built a 13+ field insured-mortgage audit report for a major bank client, refined through multiple stakeholder review rounds, matched to application screens, and saved as reusable SQL for repeat pulls.",
+        "Designed and prototyped an AI-assisted semantic search over historical ticket data (vector embeddings / retrieval-augmented generation) to turn operational history into a reusable knowledge base; evaluated local vs. API embedding options against security and tooling constraints and documented the architecture and blockers.",
+        "Build and maintain documentation, queries, and data/knowledge assets used across a cross-functional team; proposed a business-function-based model for application health monitoring of a complex, undocumented environment."
+      ]
+    },
+    {
+      "type": "break",
+      "name": "Professional Development",
+      "location": "Toronto, Ontario",
+      "startDate": "2024-07",
+      "endDate": "2025-11",
+      "summary": "Self-directed transition — focused upskilling in SQL, Power BI / reporting, and data automation."
+    },
+    {
+      "type": "job",
+      "name": "CIBC",
+      "location": "Toronto, Ontario",
+      "position": "Senior Change Planning Analyst",
+      "startDate": "2022-01",
+      "endDate": "2024-07",
+      "highlights": [
+        "Designed and built SQL- and eazyBI-driven reports and dashboards in JIRA and Confluence that directors and managers relied on for decision-making.",
+        "Automated and refactored production code and reporting for maintainability — e.g., consolidated a four-file, 674-line program to two files (378 lines), a 44% reduction.",
+        "Recognized ServiceNow subject-matter expert; analyzed logs, stack traces, and metrics to diagnose complex issues and led root-cause analysis to protect service reliability."
+      ]
+    },
+    {
+      "type": "break",
+      "name": "Career Retraining",
+      "location": "Toronto, Ontario",
+      "startDate": "2020",
+      "endDate": "2021",
+      "summary": "Returned to school to transition from accounting into data and systems — Advanced Diploma in Computer Programming & Analysis (Seneca College) and Full-Stack Web Development (University of Toronto)."
+    },
+    {
+      "type": "job",
+      "name": "Entertainment One",
+      "location": "Toronto, Ontario",
+      "position": "Senior Accountant",
+      "positionNote": "Television division",
+      "startDate": "2016-11",
+      "endDate": "2019-12",
+      "highlights": [
+        "Built and automated a new revenue and cost-of-sales reporting system spanning hundreds of projects, multiple currencies, and multiple entities; automated journal-entry uploads and consolidation (Tagetik).",
+        "Cut monthly reporting turnaround from up to a week to hours through model automation and process redesign; led the IAS 18 → IFRS 15 revenue-recognition implementation."
+      ]
+    },
+    {
+      "type": "job",
+      "name": "Circle of Care",
+      "location": "Toronto, Ontario",
+      "position": "Intermediate Accountant / Analyst",
+      "startDate": "2014-07",
+      "endDate": "2016-10",
+      "highlights": [
+        "Replaced a manual, multi-spreadsheet close with an automated process pulling data via SQL from the core database, improving reporting speed and accuracy.",
+        "Led a Microsoft Dynamics (GP) version migration end-to-end — testing, implementation, and validation — and became the go-to user for data analysis out of the system."
+      ]
+    },
+    {
+      "type": "job",
+      "name": "Salumatics",
+      "location": "Toronto, Ontario",
+      "position": "Junior Accountant / Finance Administrator",
+      "startDate": "2011-05",
+      "endDate": "2014-06",
+      "highlights": [
+        "Built custom metrics dashboards and automated routine reporting, giving management real-time visibility into financial data."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Seneca College",
+      "studyType": "Advanced Diploma",
+      "area": "Computer Programming & Analysis",
+      "endDate": "2021"
+    },
+    {
+      "institution": "University of Toronto",
+      "area": "Full-Stack Web Development",
+      "endDate": "2021"
+    },
+    {
+      "institution": "Wilfrid Laurier University",
+      "studyType": "Honours Bachelor of Business Administration",
+      "endDate": "2011"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Data & BI",
+      "keywords": [
+        "SQL / T-SQL (MS SQL Server, MySQL, PostgreSQL)",
+        "Power BI",
+        "eazyBI",
+        "Crystal Reports",
+        "Tableau",
+        "dashboard & report automation",
+        "data modeling",
+        "Excel / VBA",
+        "MS Access"
+      ]
+    },
+    {
+      "name": "Financial systems & ERP",
+      "keywords": [
+        "Microsoft Dynamics (GP / D365)",
+        "general ledger & month-end close",
+        "revenue recognition (IFRS 15)",
+        "reconciliations",
+        "data migration",
+        "UAT / SAT"
+      ]
+    },
+    {
+      "name": "Platforms & practice",
+      "keywords": [
+        "ServiceNow (ITSM / ITIL)",
+        "JIRA",
+        "Confluence",
+        "requirements & process improvement",
+        "Agile delivery",
+        "applied GenAI (RAG / vector search)"
+      ]
+    },
+    {
+      "name": "Programming",
+      "keywords": [
+        "SQL",
+        "Python",
+        "JavaScript / TypeScript",
+        "Java",
+        "PowerShell",
+        "Bash",
+        "Git"
+      ]
+    }
+  ],
+  "projects": []
+}

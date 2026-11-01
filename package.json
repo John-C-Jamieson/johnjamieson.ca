@@ -10,9 +10,11 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/checks.ts dist",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check && npm test && node scripts/checks.ts content",
+    "test": "node --test scripts/*.test.ts",
+    "sync": "node scripts/sync.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

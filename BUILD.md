@@ -206,7 +206,25 @@ gone. The old files and `.git/` were removed, then `git init -b main`.
 
 ### Step 6 — The content contract
 
-**Status:** TODO
+**Status:** DONE 2026-11-01. Built together with step 7, since checking it
+needs the synced résumé.
+
+- **`src/lib/schema.ts`** has strict Zod schemas for `resume.json` (following
+  Career's `Public Export/README.md`) and for `site.yaml`.
+- **`src/lib/content.ts`** loads the files, quotes bullets by `find` and
+  formats dates. The facts check counts the numbers in the résumé's text plus
+  its dates' years, not the months or URLs.
+- **Added: every job and break must sit in exactly one phase,** so a new job
+  in Career stops the build until it has a place on the career path.
+- **`content/site.yaml`** holds draft words from ARCHITECTURE §4.2 and §5.2,
+  marked DRAFT until step 10.
+- **The real files pass.** Test copies stopped with these messages:
+  - a renamed field: `Unrecognized key: "bullets" → at work[0]`;
+  - `find: "460-event"`: "no First National bullet contains "460-event"";
+  - "Over 500 reports" in the intro: "hero.intro: 500 isn't in resume.json".
+
+  A figure changed to 45% stopped `astro build` itself with the same kind of
+  message.
 
 - **Who:** Claude.
 - **Do:**
@@ -230,7 +248,27 @@ gone. The old files and `.git/` were removed, then `git init -b main`.
 
 ### Step 7 — Sync and checks
 
-**Status:** TODO
+**Status:** DONE 2026-11-01.
+
+- **`scripts/checks.ts`:**
+  - **Pages:** it reads the text, the structured data and the attributes that
+    hold words. It skips styles, the CSP's hashes and asset URLs, which can
+    look like postal codes.
+  - **Added, for D-9:** it refuses `mailto:` and `tel:` links, scripts other
+    than JSON-LD, inline event handlers, and `.js` files.
+  - **Links:** checks cover canonical, Open Graph and sitemap URLs too.
+- **`npm run build` runs the checks on `dist/` itself,** so the PC and GitHub
+  check the same way (step 17's outline is updated).
+- **`scripts/sync.ts` also checks `site.yaml` against the incoming résumé**
+  before copying, so a résumé change that breaks a quote is caught at sync
+  time. It warns if Career's export has changes not yet committed in Career.
+- **16 tests** (`node --test`), all with made-up data.
+- **First sync:** from Career `e1aa93e` (2026-10-31). `content/resume.json`
+  is byte for byte the same as the export, and `--check` says "In sync".
+- **Refusals tested:** an export with a 555 phone number, and one with a
+  renamed field, were each "Not copied", and `content/` stayed untouched.
+- **Results:** `npm run check` showed 0 errors, 16 tests passing, and the
+  content checks passing. `npm run build` passed its checks on all 4 files.
 
 - **Who:** Claude.
 - **Do:**
@@ -443,8 +481,7 @@ gone. The old files and `.git/` were removed, then `git init -b main`.
           with: { node-version: 24, cache: npm }
         - run: npm ci
         - run: npm run check
-        - run: npm run build
-        - run: node scripts/checks.ts dist   # privacy, links, symlinks
+        - run: npm run build                 # includes the checks on dist/
         - if: github.event_name == 'push'
           env: { TOKEN: "${{ github.token }}" }
           run: |                             # dist/ becomes the deploy branch, one commit
