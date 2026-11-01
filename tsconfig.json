@@ -1,0 +1,7 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    // Only TypeScript that Node can run as is, by stripping the types (scripts/).
+    "erasableSyntaxOnly": true
+  }
+}

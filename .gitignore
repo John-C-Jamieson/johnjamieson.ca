@@ -1,0 +1,4 @@
+# Dependencies, build output and Astro's generated types
+node_modules/
+dist/
+.astro/
