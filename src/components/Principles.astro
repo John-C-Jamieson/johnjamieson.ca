@@ -1,0 +1,67 @@
+---
+// How I work: the site's principles, numbered by CSS.
+import type { Content } from "../lib/content.ts";
+
+interface Props {
+  content: Content;
+}
+
+const { principles } = Astro.props.content.site;
+---
+
+<section class="section band" aria-labelledby="principles-title">
+  <div class="wrap">
+    <h2 id="principles-title" class="section-title">How I work</h2>
+    <ol class="principles">
+      {
+        principles.map((p) => (
+          <li>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-7);
+    list-style: none;
+    counter-reset: principle;
+  }
+
+  li {
+    counter-increment: principle;
+  }
+
+  li::before {
+    content: counter(principle, decimal-leading-zero);
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--accent);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  h3 {
+    font-size: var(--step-1);
+    font-weight: 700;
+  }
+
+  p {
+    max-width: 32rem;
+    margin-top: var(--space-2);
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 48rem) {
+    .principles {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

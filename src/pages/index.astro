@@ -1,31 +1,23 @@
 ---
-// A placeholder until the real home page (BUILD step 11). Loading the
-// content here means every build checks it.
-import { Font } from "astro:assets";
+// The home page (ARCHITECTURE §5.2): the story, built from the résumé and the
+// site's own words.
+import Base from "../layouts/Base.astro";
+import CareerPath from "../components/CareerPath.astro";
+import Figures from "../components/Figures.astro";
+import Hero from "../components/Hero.astro";
+import Principles from "../components/Principles.astro";
+import SelectedWork from "../components/SelectedWork.astro";
+import Skills from "../components/Skills.astro";
 import { loadContent } from "../lib/content.ts";
 
-const { resume, site } = loadContent();
+const content = loadContent();
 ---
 
-<!doctype html>
-<html lang="en-CA">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{resume.basics.name}</title>
-    <meta name="description" content={site.description} />
-    <Font cssVariable="--font-sans" preload />
-  </head>
-  <body>
-    <h1>{resume.basics.name}</h1>
-    <p>{resume.basics.label}</p>
-    <p>{site.hero.headline}</p>
-    <p>The new site is being built.</p>
-  </body>
-</html>
-
-<style>
-  body {
-    font-family: var(--font-sans);
-  }
-</style>
+<Base description={content.site.description}>
+  <Hero content={content} />
+  <Figures content={content} />
+  <SelectedWork content={content} />
+  <CareerPath content={content} />
+  <Principles content={content} />
+  <Skills content={content} />
+</Base>

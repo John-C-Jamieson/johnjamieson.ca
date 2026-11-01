@@ -265,11 +265,16 @@ which suits someone who turns financial data into answers.
 - **Type:** one clean sans-serif for text (Inter, the variable version), with
   tabular figures so numbers line up like a financial statement, and perhaps a
   serif for headings to add character. The site serves its own font files.
-- **Colour:** an ice palette (John, 2026-11-01): white and frost-blue surfaces,
-  a glacier-blue accent for links and highlights, and deep navy text, since
-  pale blue text fails contrast. Flat and still: no animated gradients or
-  frosted glass. The dark theme is deep arctic navy with ice-blue accents. It
-  follows the visitor's system setting, so there's no switch and no JavaScript.
+- **Colour:** an ice palette called "Glacier", chosen by John on 2026-11-01
+  over a frost-blue variation:
+  - a deep navy hero and footer with ice-blue accents;
+  - white and frost-blue bands between them;
+  - a glacier-blue accent for links and highlights;
+  - deep navy text, since pale blue text fails contrast.
+
+  It's flat and still: no animated gradients or frosted glass. The dark theme
+  is deep arctic navy with ice-blue accents. It follows the visitor's system
+  setting, so there's no switch and no JavaScript.
 - **Layout:** a comfortable reading width for text and a grid for the figures
   and cards. It's built for phones first, with no sideways scrolling down to a
   320-pixel screen.

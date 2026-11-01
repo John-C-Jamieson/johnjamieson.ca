@@ -1,0 +1,160 @@
+---
+// The top of the home page: label, headline, intro, current role, photo.
+import { Picture } from "astro:assets";
+import photo from "../assets/john-jamieson.jpg";
+import type { Content } from "../lib/content.ts";
+
+interface Props {
+  content: Content;
+}
+
+const { resume, site, current } = Astro.props.content;
+const { name, label, profiles } = resume.basics;
+const linkedin = profiles.find((p) => p.network === "LinkedIn");
+const github = profiles.find((p) => p.network === "GitHub");
+---
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <p class="hero-label">{label}</p>
+      <h1>{site.hero.headline}</h1>
+      <p class="hero-intro">{site.hero.intro}</p>
+      {
+        current && (
+          <p class="hero-now">
+            <span class="dot" aria-hidden="true" />
+            Now: {current.position} at {current.name}
+          </p>
+        )
+      }
+      <p class="hero-actions">
+        <a class="button" href="/resume/">Read the résumé</a>
+        {linkedin && <a href={linkedin.url}>LinkedIn</a>}
+        {github && <a href={github.url}>GitHub</a>}
+      </p>
+    </div>
+    <div class="hero-photo">
+      <Picture
+        src={photo}
+        alt={name}
+        formats={["avif", "webp"]}
+        width={640}
+        height={800}
+        widths={[160, 240, 320, 480, 640]}
+        sizes="(min-width: 56rem) 320px, 128px"
+        fit="cover"
+        position="center"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-8);
+    background: var(--hero-bg);
+    color: var(--hero-ink);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  .hero-label {
+    margin-bottom: var(--space-4);
+    color: var(--hero-accent);
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 18ch;
+    color: var(--hero-ink);
+    font-size: var(--step-4);
+    font-weight: 750;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-intro {
+    max-width: 34rem;
+    margin-top: var(--space-5);
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .hero-now {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+    color: var(--hero-muted);
+    font-size: var(--step--1);
+  }
+
+  .dot {
+    flex: none;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--hero-accent);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4) var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  .hero-actions a {
+    color: var(--hero-accent);
+    font-weight: 600;
+  }
+
+  .hero-actions .button {
+    padding: 0.7rem 1.25rem;
+    border-radius: var(--radius);
+    background: var(--button-bg);
+    color: var(--button-ink);
+    text-decoration: none;
+  }
+
+  .hero-actions .button:hover {
+    color: var(--button-ink);
+    text-decoration: underline;
+  }
+
+  .hero-photo :global(img) {
+    width: 320px;
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+    object-fit: cover;
+    /* A light edge, so the photo's dark backdrop doesn't melt into the navy */
+    box-shadow: 0 0 0 1px var(--photo-edge);
+  }
+
+  @media (max-width: 56rem) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .hero-photo {
+      order: -1;
+    }
+
+    .hero-photo :global(img) {
+      width: 128px;
+      border-radius: 10px;
+    }
+  }
+</style>

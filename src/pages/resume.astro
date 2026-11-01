@@ -1,0 +1,205 @@
+---
+// The master résumé in full, as text (ARCHITECTURE §5.1): the Word master's
+// sections in the same order, without contact details. A first pass;
+// BUILD step 12 adds print styles and compares it with the master.
+import Base from "../layouts/Base.astro";
+import { loadContent, resumeDate } from "../lib/content.ts";
+
+const { basics, work, education, skills } = loadContent().resume;
+const linkedin = basics.profiles.find((p) => p.network === "LinkedIn");
+const github = basics.profiles.find((p) => p.network === "GitHub");
+const place = `${basics.location.city}, ${basics.location.region}`;
+---
+
+<Base title="Résumé" description={`${basics.name}'s résumé: ${basics.label}, ${place}.`}>
+  <article class="wrap resume">
+    <header>
+      <h1>{basics.name}</h1>
+      <p class="label">{basics.label}</p>
+      <p class="tagline">{basics.tagline}</p>
+      <p class="contact">
+        {place}
+        {linkedin && <> · <a href={linkedin.url}>LinkedIn</a></>}
+        {github && <> · <a href={github.url}>GitHub</a></>}
+      </p>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p>{basics.summary}</p>
+    </section>
+
+    <section>
+      <h2>Core Skills</h2>
+      <dl class="skills">
+        {
+          skills.map((s) => (
+            <div>
+              <dt>{s.name}</dt>
+              <dd>{s.keywords.join(", ")}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section>
+      <h2>Professional Experience</h2>
+      {
+        work.map((w) => (
+          <div class="role">
+            <div class="role-head">
+              <h3>
+                {w.name} <span class="where">· {w.location}</span>
+              </h3>
+              <p class="dates tnum">
+                {resumeDate(w.startDate)} – {resumeDate(w.endDate)}
+              </p>
+            </div>
+            {w.type === "job" ? (
+              <>
+                <p class="position">
+                  {w.position}
+                  {w.positionNote && <> — {w.positionNote}</>}
+                </p>
+                <ul>
+                  {w.highlights.map((h) => (
+                    <li>{h}</li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <p class="summary">{w.summary}</p>
+            )}
+          </div>
+        ))
+      }
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <ul class="education">
+        {
+          education.map((e) => (
+            <li>
+              <strong>{[e.studyType, e.area].filter(Boolean).join(", ")}</strong> — {e.institution} ({e.endDate})
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .resume {
+    max-width: 52rem;
+    padding-block: var(--space-7) var(--space-8);
+  }
+
+  h1 {
+    font-size: var(--step-4);
+    font-weight: 750;
+  }
+
+  .label {
+    margin-top: var(--space-3);
+    color: var(--accent-strong);
+    font-size: var(--step-1);
+    font-weight: 650;
+  }
+
+  .tagline {
+    margin-top: var(--space-1);
+    color: var(--ink-2);
+  }
+
+  .contact {
+    margin-top: var(--space-3);
+    color: var(--muted);
+    font-size: var(--step--1);
+  }
+
+  section {
+    margin-top: var(--space-7);
+  }
+
+  h2 {
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--line);
+    color: var(--accent);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .skills {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+  }
+
+  dt {
+    font-weight: 650;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--ink-2);
+  }
+
+  .role {
+    margin-bottom: var(--space-6);
+  }
+
+  .role-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-4);
+  }
+
+  h3 {
+    font-size: var(--step-1);
+    font-weight: 700;
+  }
+
+  .where {
+    color: var(--muted);
+    font-size: var(--step-0);
+    font-weight: 450;
+  }
+
+  .dates {
+    color: var(--muted);
+    font-size: var(--step--1);
+    white-space: nowrap;
+  }
+
+  .position {
+    margin-top: var(--space-1);
+    color: var(--ink-2);
+    font-weight: 600;
+  }
+
+  .role ul {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    padding-left: 1.2rem;
+    color: var(--ink-2);
+  }
+
+  .summary {
+    margin-top: var(--space-1);
+    color: var(--ink-2);
+  }
+
+  .education {
+    display: grid;
+    gap: var(--space-2);
+    list-style: none;
+  }
+</style>

@@ -1,0 +1,88 @@
+/* Design tokens (ARCHITECTURE §5.3): the ice palette, type and spacing.
+   Text colours are checked for WCAG AA contrast by scripts/design.test.ts. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Light: white and frost surfaces, deep navy text, glacier-blue accent */
+  --bg: #ffffff;
+  --ice: #eef6fc; /* frost band */
+  --ice-2: #dbebf8; /* stronger frost: tiles, rings */
+  --line: #d3e3f0; /* hairlines */
+  --ink: #0c2340; /* body text and headings */
+  --ink-2: #304b66; /* secondary text */
+  --muted: #536e87; /* dates and labels */
+  --accent: #1a6db3; /* links */
+  --accent-strong: #0f4f86; /* key figures, hover */
+  --on-accent: #ffffff; /* text on the skip link */
+  --phase-1: #cfe4f5; /* career path bars, oldest to newest */
+  --phase-2: #9ccaed;
+  --phase-3: #4a96d4;
+
+  /* "Glacier" (John, 2026-11-01): a deep navy hero and footer, ice accents */
+  --hero-bg: #0c2340;
+  --hero-ink: #f1f8fd;
+  --hero-muted: #a9c3d9;
+  --hero-accent: #8fd0f7;
+  --button-bg: #8fd0f7;
+  --button-ink: #0c2340;
+  --photo-edge: #46698f; /* sets the photo's dark background off the navy */
+  --footer-bg: #0c2340;
+  --footer-ink: #c8dcec;
+  --footer-accent: #8fd0f7;
+
+  /* Type */
+  --font-body: var(--font-sans), system-ui, sans-serif;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(1.625rem, 1.3rem + 1.2vw, 2.125rem);
+  --step-4: clamp(2.125rem, 1.35rem + 3.2vw, 3.5rem);
+  --step-figure: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+
+  /* Space and shape */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --radius: 10px;
+  --measure: 40rem; /* reading width */
+  --wide: 72rem; /* page width */
+}
+
+/* Dark: deep arctic navy with ice-blue accents. It follows the visitor's
+   system setting, so there's no switch and no JavaScript (D-9). */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #08182a;
+    --ice: #0d2238;
+    --ice-2: #163150;
+    --line: #1f3b59;
+    --ink: #e6f1fa;
+    --ink-2: #bcd2e4;
+    --muted: #92abc2;
+    --accent: #7cc3f0;
+    --accent-strong: #a9dafb;
+    --on-accent: #06182b;
+    --phase-1: #1d4266;
+    --phase-2: #2b6496;
+    --phase-3: #5fb0e8;
+
+    /* The hero and footer join the dark page as frost bands */
+    --hero-bg: var(--ice);
+    --hero-ink: var(--ink);
+    --hero-muted: var(--muted);
+    --hero-accent: var(--accent);
+    --button-bg: var(--accent);
+    --button-ink: var(--on-accent);
+    --photo-edge: #2f5277;
+    --footer-bg: var(--ice);
+    --footer-ink: var(--ink-2);
+    --footer-accent: var(--accent);
+  }
+}

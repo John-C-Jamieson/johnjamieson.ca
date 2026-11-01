@@ -1,0 +1,146 @@
+/* Base styles: the page itself, text, links and the shared layout pieces. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Figures that line up like a financial statement. Only where numbers sit in
+   columns: Inter's tabular forms widen the hyphen too. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent-strong);
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+::selection {
+  background: var(--ice-2);
+  color: var(--ink);
+}
+
+/* A centred column at page width, with side gutters */
+.wrap {
+  width: min(100% - 2 * var(--space-5), var(--wide));
+  margin-inline: auto;
+}
+
+/* A section of the page; .band gives it the frost background */
+.section {
+  padding-block: var(--space-8);
+}
+
+.band {
+  background: var(--ice);
+}
+
+/* The small label above a section title */
+.eyebrow {
+  margin-bottom: var(--space-2);
+  color: var(--accent);
+  font-size: var(--step--1);
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin-bottom: var(--space-6);
+  font-size: var(--step-3);
+  font-weight: 700;
+}
+
+/* A short accent rule above each section title, like a report's */
+.section-title::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-bottom: var(--space-4);
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* Hidden until focused: lets keyboard users jump past the header */
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -4rem;
+  z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  background: var(--accent);
+  color: var(--on-accent);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+@media (max-width: 40rem) {
+  body {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding-block: var(--space-7);
+  }
+}

@@ -1,0 +1,74 @@
+---
+// Selected work: the site's title over the résumé bullet it quotes.
+import { year } from "../lib/content.ts";
+import type { Content } from "../lib/content.ts";
+
+interface Props {
+  content: Content;
+}
+
+const { work } = Astro.props.content;
+const span = (start: string, end?: string) => `${year(start)}–${end ? year(end) : "now"}`;
+---
+
+<section id="work" class="section band" aria-labelledby="work-title">
+  <div class="wrap">
+    <h2 id="work-title" class="section-title">Selected work</h2>
+    <ul class="cards">
+      {
+        work.map((w) => (
+          <li class="card">
+            <p class="meta tnum">
+              {w.job.name} · {span(w.job.startDate, w.job.endDate)}
+            </p>
+            <h3>{w.title}</h3>
+            <p class="text">{w.bullet}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+    list-style: none;
+  }
+
+  .card {
+    padding: var(--space-6);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg);
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: var(--step--1);
+    font-weight: 550;
+  }
+
+  h3 {
+    margin-top: var(--space-2);
+    font-size: var(--step-1);
+    font-weight: 700;
+  }
+
+  .text {
+    margin-top: var(--space-3);
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 48rem) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      padding: var(--space-5);
+    }
+  }
+</style>

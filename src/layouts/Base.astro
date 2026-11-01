@@ -1,0 +1,142 @@
+---
+// The shell of every page: head, header and footer (ARCHITECTURE §5).
+import { Font } from "astro:assets";
+import { execFileSync } from "node:child_process";
+import { RESUME_PATH, loadContent, shortDate } from "../lib/content.ts";
+import "../styles/tokens.css";
+import "../styles/base.css";
+import "../styles/print.css";
+
+interface Props {
+  title?: string; // the page's own title; the home page leaves it out
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const { name, label, location, profiles } = loadContent().resume.basics;
+const linkedin = profiles.find((p) => p.network === "LinkedIn");
+const github = profiles.find((p) => p.network === "GitHub");
+
+// When the résumé copy last changed here, from git. Left out if git can't say.
+let updated: string | undefined;
+try {
+  const date = execFileSync("git", ["log", "-1", "--format=%cs", "--", RESUME_PATH], { encoding: "utf8" }).trim();
+  if (date) updated = shortDate(date.slice(0, 7));
+} catch {
+  updated = undefined;
+}
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} — ${name}` : `${name} — ${label}`}</title>
+    <meta name="description" content={description} />
+    <Font cssVariable="--font-sans" preload />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="wordmark" href="/">{name}</a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="/#work">Work</a>
+          <a href="/#path">Path</a>
+          <a href="/resume/">Résumé</a>
+          {linkedin && <a href={linkedin.url}>LinkedIn</a>}
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p class="footer-name">{name} · {location.city}, {location.region}</p>
+        <p class="footer-links no-print">
+          {linkedin && <a href={linkedin.url}>LinkedIn</a>}
+          {github && <a href={github.url}>GitHub</a>}
+          <a href="/resume/">Résumé</a>
+        </p>
+        <p class="footer-meta no-print">
+          {updated && <span>Résumé last updated {updated}. </span>}
+          <a href="https://github.com/John-C-Jamieson/johnjamieson.ca">Source on GitHub</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 1;
+    background: var(--hero-bg);
+    color: var(--hero-ink);
+    /* Overlaps the hero by a pixel, so no hairline shows between the two
+       navy blocks when a screen scales the page by a fraction */
+    box-shadow: 0 1px 0 var(--hero-bg);
+  }
+
+  .header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-5);
+    padding-block: var(--space-4);
+  }
+
+  .wordmark {
+    color: var(--hero-ink);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+  }
+
+  .site-nav a {
+    color: var(--hero-ink);
+    font-size: var(--step--1);
+    font-weight: 550;
+    text-decoration: none;
+  }
+
+  .site-nav a:hover {
+    color: var(--hero-accent);
+    text-decoration: underline;
+  }
+
+  .site-footer {
+    padding-block: var(--space-7);
+    background: var(--footer-bg);
+    color: var(--footer-ink);
+    font-size: var(--step--1);
+  }
+
+  .footer-inner {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .footer-name {
+    font-weight: 650;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .site-footer a {
+    color: var(--footer-accent);
+  }
+</style>

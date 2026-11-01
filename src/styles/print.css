@@ -1,0 +1,27 @@
+/* Printing: black on white, no navigation, no backgrounds. The résumé page
+   gets its own rules in step 12. */
+
+@media print {
+  :root {
+    --bg: #ffffff;
+    --ice: #ffffff;
+    --ink: #000000;
+    --ink-2: #222222;
+    --muted: #444444;
+    --accent: #000000;
+  }
+
+  .site-nav,
+  .skip-link,
+  .no-print {
+    display: none !important;
+  }
+
+  .section {
+    padding-block: 1.25rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

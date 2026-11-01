@@ -316,7 +316,50 @@ needs the synced résumé.
 
 ### Step 9 — Look and feel
 
-**Status:** TODO
+**Status:** DONE 2026-11-01. John chose B, "Glacier", on my recommendation.
+
+- **Built, to judge the look on real content:** a first pass of the home page
+  and the résumé page. Step 11 finishes the home page, and step 12 the résumé
+  page.
+  - The tokens are in `src/styles/tokens.css`, alongside base and print
+    styles.
+  - `src/layouts/Base.astro` has the header, a skip link and the footer, which
+    shows "Résumé last updated" from git.
+  - The home page has six section components. Section titles such as
+    "Selected work" are labels in the templates, not site words.
+- **Two palettes were shown:**
+  - **A, Frost:** a frost-blue hero and footer.
+  - **B, Glacier:** a deep navy hero and footer.
+  - Both had the same dark theme. B was on a temporary page, now removed, and
+    is now the light theme. In dark mode the hero and footer become dark frost
+    bands, as in the screenshots John saw.
+- **Two fixes that came with B:**
+  - The photo has a 1 px steel-blue edge (`--photo-edge`), so its dark
+    backdrop doesn't melt into the navy.
+  - The header overlaps the hero by a pixel (`box-shadow`). Without it, a
+    hairline showed between the two navy blocks when the page was scaled. It's
+    gone at the scaled 1280 px view.
+- **Contrast:** `scripts/design.test.ts` reads the tokens and checks every
+  text colour against its background, in light and dark. The lowest ratio is
+  4.9:1 (muted text on frost); WCAG AA needs 4.5.
+- **Head order:** Astro places the CSP `<meta>` after the font's inline
+  `<style>` and preload. Nothing can be moved ahead of it, since Astro adds it
+  at the end of the head. It's harmless: those two are the site's own static
+  files, and the policy covers everything else.
+- **For step 13:** the home page's title reads "John Jamieson — Data & BI
+  Analyst — Financial Systems", with two dashes. Tidy it then.
+- **Fixes found while checking:**
+  - Tabular figures now apply only to number columns (the `.tnum` class).
+    Applied everywhere, Inter's tabular forms widened the hyphen in
+    "decision-ready".
+  - `ol` lost its default indent.
+- **Results:**
+  - The built pages (CSP on) gave no console errors, and Inter loads from the
+    site.
+  - At 375 px there's no sideways scrolling.
+  - The home page is 14.6 KB of HTML, about 11 KB of CSS, 48 KB of font and a
+    12 KB AVIF photo: roughly 86 KB on a first visit.
+  - `npm run check`: 0 errors and 20 tests passing.
 
 - **Who:** Claude builds; John chooses.
 - **Do:**
