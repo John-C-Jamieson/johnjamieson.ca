@@ -7,13 +7,15 @@ interface Props {
   content: Content;
 }
 
-const { work } = Astro.props.content;
+const { work, site } = Astro.props.content;
+const { title, intro } = site.sections.work;
 const span = (start: string, end?: string) => `${year(start)}–${end ? year(end) : "now"}`;
 ---
 
 <section id="work" class="section band" aria-labelledby="work-title">
   <div class="wrap">
-    <h2 id="work-title" class="section-title">Selected work</h2>
+    <h2 id="work-title" class="section-title">{title}</h2>
+    {intro && <p class="section-intro">{intro}</p>}
     <ul class="cards">
       {
         work.map((w) => (

@@ -6,12 +6,14 @@ interface Props {
   content: Content;
 }
 
-const { principles } = Astro.props.content.site;
+const { principles, sections } = Astro.props.content.site;
+const { title, intro } = sections.principles;
 ---
 
 <section class="section band" aria-labelledby="principles-title">
   <div class="wrap">
-    <h2 id="principles-title" class="section-title">How I work</h2>
+    <h2 id="principles-title" class="section-title">{title}</h2>
+    {intro && <p class="section-intro">{intro}</p>}
     <ol class="principles">
       {
         principles.map((p) => (

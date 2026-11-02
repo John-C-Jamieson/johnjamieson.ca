@@ -73,9 +73,20 @@ export const resumeSchema = z.strictObject({
 // phrase found in exactly one of its bullets.
 const source = z.strictObject({ job: text, find: text });
 
+// A section's title, and an optional line under it
+const section = z.strictObject({ title: text, intro: text.optional() });
+
 export const siteSchema = z.strictObject({
-  description: text,
+  meta: z.strictObject({ description: text }),
   hero: z.strictObject({ headline: text, intro: text }),
+  sections: z.strictObject({
+    figures: section,
+    work: section,
+    path: section,
+    principles: section,
+    skills: section,
+    education: section,
+  }),
   figures: z.array(z.strictObject({ value: text, label: text, source })),
   work: z.array(z.strictObject({ title: text, source })),
   phases: z.array(z.strictObject({ label: text, jobs: z.array(text).min(1) })).min(1),

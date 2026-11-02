@@ -107,6 +107,14 @@ a:hover {
   font-weight: 700;
 }
 
+/* The optional line under a section title */
+.section-intro {
+  max-width: var(--measure);
+  margin: calc(-1 * var(--space-3)) 0 var(--space-6);
+  color: var(--ink-2);
+  font-size: 1.125rem;
+}
+
 /* A short accent rule above each section title, like a report's */
 .section-title::before {
   content: "";

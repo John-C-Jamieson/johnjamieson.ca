@@ -49,8 +49,16 @@ const resume = (): Resume => ({
 });
 
 const site = (): Site => ({
-  description: "Sam Example, analyst.",
+  meta: { description: "Sam Example, analyst." },
   hero: { headline: "Answers from data.", intro: "Reporting since 2012." },
+  sections: {
+    figures: { title: "At a glance" },
+    work: { title: "Work", intro: "Three examples." },
+    path: { title: "Path" },
+    principles: { title: "How" },
+    skills: { title: "Skills" },
+    education: { title: "Education" },
+  },
   figures: [{ value: "78%", label: "faster reporting", source: { job: "Example Bank", find: "78% saving" } }],
   work: [{ title: "Faster close", source: { job: "Example Co", find: "month-end" } }],
   phases: [

@@ -5,43 +5,67 @@
 #     matches;
 #   - every job and break sits in exactly one phase.
 #
-# DRAFT: placeholder words, until BUILD step 10 writes them properly for
-# John's approval.
+# Written at BUILD step 10 and approved by John on 2026-11-01.
 
-description: >-
-  John Jamieson, Data & BI Analyst in Toronto: SQL reporting, dashboards and
-  data automation, with a background in finance.
+meta:
+  # The home page's description, for search results and link previews
+  description: >-
+    John Jamieson is a Data & BI Analyst in Toronto who builds SQL reporting,
+    dashboards and automated data processes, grounded in years of accounting.
 
 hero:
-  headline: Turning financial data into reliable, decision-ready answers.
+  headline: Turning financial data into answers people can trust.
   intro: >-
-    I build the reporting, dashboards and automated data processes that
-    businesses run on, and I speak finance as well as SQL.
+    Few data analysts speak finance, and few finance people build. I do both:
+    SQL, reporting and automation, grounded in years of accounting.
 
+sections:
+  figures:
+    title: At a glance
+  work:
+    title: Selected work
+    intro: Four pieces of work, in the résumé's own words.
+  path:
+    title: Career path
+    intro: >-
+      I started in accounting, retrained in programming, then moved into
+      systems and data. The finance years are why I know what the numbers are
+      for.
+  principles:
+    title: How I work
+  skills:
+    title: Skills
+  education:
+    title: Education
+
+# Each value must appear in its source bullet
 figures:
   - value: "30+"
     label: reporting and data-extract requests resolved in just over six months
     source: { job: First National, find: "30+ resolved" }
-  - value: "459"
-    label: document events traced through undocumented data for one auditable report
-    source: { job: First National, find: "459-event" }
+  - value: "5+"
+    label: business areas served, from mortgage operations to transformation projects
+    source: { job: First National, find: "5+ business areas" }
   - value: "300+"
-    label: records whose identifier history was rebuilt from audit logs
+    label: records whose identifier history was rebuilt from field-level audit logs
     source: { job: First National, find: "300+ records" }
   - value: "44%"
-    label: less code after consolidating a production program
+    label: fewer lines of code after refactoring a production program
     source: { job: CIBC, find: "44% reduction" }
 
+# The proof points the career strategy leads with. The title is the site's;
+# the card's text is the résumé bullet, word for word.
 work:
   - title: From a vague request to an auditable report
     source: { job: First National, find: "459-event" }
-  - title: Dashboards leadership relied on
+  - title: Dashboards directors relied on
     source: { job: CIBC, find: "eazyBI" }
-  - title: A revenue system across currencies and entities
+  - title: A revenue reporting system across currencies and entities
     source: { job: Entertainment One, find: "revenue and cost-of-sales" }
   - title: An ERP migration, end to end
     source: { job: Circle of Care, find: "Dynamics (GP)" }
 
+# The years come from the jobs' dates
 phases:
   - label: Finance and accounting
     jobs: [Salumatics, Circle of Care, Entertainment One]
@@ -53,17 +77,18 @@ phases:
 principles:
   - title: Define the question first
     text: >-
-      Vague requests become testable definitions: source, grain, date logic
-      and duplicate rules, settled before the query is written.
+      A vague request becomes a testable definition: source, grain, date
+      logic, status and duplicate rules, all settled before the query is
+      written.
+  - title: Check before delivering
+    text: >-
+      Nulls, placeholders, duplicates and odd histories get handled before a
+      number leaves my desk.
   - title: Leave an audit trail
     text: >-
-      Results someone else can check: auditable extracts, saved queries and
-      the documentation to rerun them.
-  - title: Automate the second time
+      Results someone else can check and rerun: auditable extracts, reusable
+      SQL and the documentation behind them.
+  - title: Automate what repeats
     text: >-
-      Work that repeats becomes a process, from the month-end close to
-      journal-entry uploads.
-  - title: Speak finance and SQL
-    text: >-
-      Years in accounting mean the numbers get read the way the business
-      reads them.
+      Work that comes back every month should run itself, from the month-end
+      close to journal-entry uploads.

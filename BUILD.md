@@ -375,7 +375,20 @@ needs the synced résumé.
 
 ### Step 10 — The site's own words
 
-**Status:** TODO
+**Status:** DONE 2026-11-01. John approved the draft as written.
+
+- **Section titles and intros now live in `site.yaml`** (a `sections` block),
+  so every word of copy is in one file and covered by the facts check. The
+  description moved under `meta`.
+- **Page titles tidied** (from step 13's list): the home page is
+  "John Jamieson · Data & BI Analyst — Financial Systems", and other pages
+  read "Résumé · John Jamieson".
+- **The figures avoid the bullets the work cards quote,** so nothing appears
+  twice: 30+ requests, 5+ business areas, 300+ records and 44% fewer lines.
+- **The new headline has no hyphenated word,** so the phone no longer breaks
+  it after "decision-".
+- **Checks:** the facts check passes, `npm run check` shows 0 errors and 19
+  tests passing, and the build passes its checks with no console errors.
 
 - **Who:** Claude drafts; John edits and approves.
 - **Do:** Draft `content/site.yaml`:

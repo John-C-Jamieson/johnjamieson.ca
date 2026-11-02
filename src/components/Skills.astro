@@ -7,13 +7,15 @@ interface Props {
 }
 
 const { skills, education } = Astro.props.content.resume;
+const { sections } = Astro.props.content.site;
 const credential = (e: (typeof education)[number]) => [e.studyType, e.area].filter(Boolean).join(", ");
 ---
 
 <section class="section" aria-labelledby="skills-title">
   <div class="wrap columns">
     <div>
-      <h2 id="skills-title" class="section-title">Skills</h2>
+      <h2 id="skills-title" class="section-title">{sections.skills.title}</h2>
+      {sections.skills.intro && <p class="section-intro">{sections.skills.intro}</p>}
       <dl class="skills">
         {
           skills.map((s) => (
@@ -26,7 +28,8 @@ const credential = (e: (typeof education)[number]) => [e.studyType, e.area].filt
       </dl>
     </div>
     <div>
-      <h2 class="section-title">Education</h2>
+      <h2 class="section-title">{sections.education.title}</h2>
+      {sections.education.intro && <p class="section-intro">{sections.education.intro}</p>}
       <ul class="education">
         {
           education.map((e) => (
