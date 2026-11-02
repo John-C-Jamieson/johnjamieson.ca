@@ -13,7 +13,7 @@ import { loadContent } from "../lib/content.ts";
 const content = loadContent();
 ---
 
-<Base description={content.site.meta.description}>
+<Base description={content.site.meta.description} person>
   <Hero content={content} />
   <Figures content={content} />
   <SelectedWork content={content} />

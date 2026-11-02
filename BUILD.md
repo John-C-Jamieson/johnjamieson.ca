@@ -492,7 +492,29 @@ were built at step 9; this step checked them and fixed one thing.
 
 ### Step 13 — Search, sharing and icons
 
-**Status:** TODO
+**Status:** DONE 2026-11-01.
+
+- **Every page** has a title, a description, and Open Graph and Twitter tags.
+  Indexed pages get a canonical link; the 404 gets `noindex`, with no
+  canonical or `og:url`.
+  - The link check caught `og:url` pointing at `/404/`, which doesn't exist.
+    Fixed by leaving it off pages that aren't indexed.
+  - The page titles were tidied at step 10.
+- **The preview image** is `public/og.jpg`: 1200 × 630, 57 KB, the photo and
+  the name in the site's own font and colours.
+  - It was rendered once with headless Firefox from a small HTML page in the
+    scratchpad, then saved as JPEG.
+  - It shows only the name and the address, so it never goes out of date.
+- **`schema.org/Person` data**, on the home page only, built from the résumé:
+  name, job title, Toronto, LinkedIn and GitHub, and the current employer.
+  It parses as JSON.
+- **The icon:** a "JJ" monogram in ice blue on navy, drawn as strokes
+  (`favicon.svg`), so it needs no font. Also `favicon.ico` (16, 32 and
+  48 px) and a 180 px `apple-touch-icon.png`, made with ImageMagick.
+- **Also added:** `theme-color` for light and dark, and `robots.txt` pointing
+  at the sitemap. The sitemap lists `/` and `/resume/` only.
+- **Results:** the icons, the image, `robots.txt` and the sitemap all load
+  (200), and the page has no console errors.
 
 - **Who:** Claude.
 - **Do:**
