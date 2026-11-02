@@ -22,7 +22,8 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-02)
 
-- **Done:** steps 1–20, 11a and 11b. The site is built and on GitHub, and
+- **Done:** steps 1–21, 11a and 11b. The preview is at
+  `https://johnjamieson.articuno.johnjamieson.ca`, behind the sign-in page. The site is built and on GitHub, and
   every push to `main` checks, builds and publishes it to the `deploy` branch
   in about 25 s. Career's `make resume` says when the site's copy of the
   résumé is out of date (step 8). The server's side is on paper and tried on
@@ -30,8 +31,8 @@ server's `SETUP.md`.
 - **Not live yet.** johnjamieson.ca still points at the old Netlify site,
   which shows the internal system names until the switch (step 24).
 - **Next, in order:**
-  1. **Phase E, steps 21–22, on articuno.** Step 21 is the gated preview
-     (the server's RCP-4 step 5), then John's launch review.
+  1. **Step 22, John's launch review:** every page on the phone and the PC,
+     the printout included, then a go-ahead with a date and a quiet time.
   2. **Phase F (steps 23–28):** the switch.
 - **Open items:**
   - **The 17 website-only bullets** are facts the site may quote, but no page
@@ -43,8 +44,6 @@ server's `SETUP.md`.
   - **Dependabot's first pull request** confirms that pull requests are
     checked without publishing (step 17).
   - **PageSpeed Insights** after launch (step 25).
-  - **At step 21,** check `/resume` and `/projects` without the slash on the
-    server. On the PC they gave a `308` to the same with a slash (step 18).
 
 ## Overview
 
@@ -780,6 +779,11 @@ will show it.
   - `build.json` names `887745439807…`, the pushed commit;
   - the deployed home page reads "Résumé last updated Nov 2026", so git
     history reaches the build.
+- **A failed run, 2026-11-02** (41482080686, from `cb020fb`): the checks and
+  the build passed, but GitHub refused the push to `deploy` with
+  "remote: fatal error in commit_refs", an error on its side. GitHub
+  emailed John. The next push, three minutes later, published normally, so
+  no retry was added: a failed push only delays the site until the next one.
 
 - **Who:** Claude.
 - **Do:** Write `.github/workflows/site.yml`, as in ARCHITECTURE §7.1. An
@@ -965,7 +969,22 @@ same day (INV-11).
 
 ### Step 21 — The gated preview
 
-**Status:** TODO
+**Status:** DONE 2026-11-02: the server's SETUP 28, OVHcloud commit
+`19986be`.
+
+- **The preview:** `https://johnjamieson.articuno.johnjamieson.ca`, with a
+  Let's Encrypt certificate obtained within seconds of the reload. INV-8's
+  check passes.
+- **Signed out,** it answers with a `302` to the sign-in page, with HSTS.
+  John, already signed in from the day before (*Remember me* lasts a
+  month), saw the site on the PC, and also on his phone.
+- **The small Caddy,** checked on the server: `/_astro/` files kept a year;
+  pages, and 404s, `no-cache`; a missing page gets the 404 page with a `404`
+  status; `/resume` and `/projects` get a `308` to the same with a slash;
+  framing refused. The page has its CSP `<meta>`.
+- **End to end:** a push to `main` at 11:33 was live in the preview at
+  11:37.
+- **The server's drift check** (INV-7) is clean.
 
 - **Who:** Claude writes and checks the script; John runs it, then looks.
 - **Do:** the server's RCP-4 step 5. Install `conf/sites/johnjamieson.caddy`,
