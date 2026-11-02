@@ -47,6 +47,16 @@ server, articuno, fetches it from there (ARCHITECTURE §7).
 - **Career steps** follow `~/Projects/Career/CLAUDE.md`.
 - **Commit after each step or change.**
 
+## Working with John
+
+- **Run read-only checks without asking.** John doesn't want a permission
+  question for each one.
+- **John runs anything that needs `sudo`.** Give him the exact commands, one
+  per `bash` block.
+- **Lead with a recommendation.** He decides, often one question at a time.
+- **GitHub:** this PC is signed in through `gh`, with the sign-in in the
+  keyring, so pushing and `gh run` just work.
+
 ## Commands
 
 | Command | What it does |

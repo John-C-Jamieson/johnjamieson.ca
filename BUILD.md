@@ -20,6 +20,40 @@ server's `SETUP.md`.
   from 25, SPEC §4, and `server/`.
 - **Career steps** (8 and 28) follow `~/Projects/Career/CLAUDE.md`.
 
+## Where things stand (2026-11-01)
+
+- **Done:** steps 1–7 and 9–17. The site is built and on GitHub, and every
+  push to `main` checks, builds and publishes it to the `deploy` branch in
+  about 25 s.
+- **Not live yet.** johnjamieson.ca still points at the old Netlify site,
+  which shows the internal system names until the switch (step 24).
+- **Next, in order:**
+  1. **Step 8,** Career's drift notice. It's unblocked: Career's tagged-master
+     work is finished (Career commit `995b46d`).
+  2. **Phase E (steps 18–22), on articuno.** It starts on paper, in
+     `~/Projects/OVHcloud`. John's own read of the platform (the server
+     README's *To do*, item 1) is optional; ask whether he wants it first.
+  3. **Phase F (steps 23–28):** the switch.
+- **Open items:**
+  - **"Read more" on the work cards** (John to decide). Career's
+    `websiteHighlights` carry a first-person paragraph (`long`) for each of
+    the four proof points, and all four are matched by the cards' `find`
+    phrases. They're loaded (`Content.work[].long`) but not shown. Proposal:
+    a `<details>` "Read more" on each card, which needs no JavaScript.
+  - **The 17 website-only bullets** are facts the site may quote, but no page
+    shows them yet. Later, they could feed more figures (Salumatics' "more
+    than 100 days" down to "within 30 days", say) or a fuller experience
+    section.
+  - **John prints `/resume/` once** (Ctrl+P) to confirm the print layout
+    (step 12).
+  - **Dependabot's first pull request** confirms that pull requests are
+    checked without publishing (step 17).
+  - **PageSpeed Insights** after launch (step 25).
+  - **At step 21,** check `/resume` and `/projects` without the slash on the
+    server.
+  - **The OVHcloud README** still names `~/Projects/personal-web-page`;
+    step 28 fixes it.
+
 ## Overview
 
 | Phase | Steps | Where | Touches the live site? |
@@ -502,8 +536,22 @@ were built at step 9; this step checked them and fixed one thing.
   - The page titles were tidied at step 10.
 - **The preview image** is `public/og.jpg`: 1200 × 630, 57 KB, the photo and
   the name in the site's own font and colours.
-  - It was rendered once with headless Firefox from a small HTML page in the
-    scratchpad, then saved as JPEG.
+  - **To remake it**, for a new photo say: put `inter.woff2` (from
+    `node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2`)
+    and `photo.jpg` (from `src/assets/john-jamieson.jpg`) beside an
+    `og.html`, then follow the steps below.
+
+    1. `og.html` is a 1200 × 630 page: background `#0c2340`, 96 px side
+       padding, flex with space between.
+       - **Left:** a 64 × 6 px rule in `#8fd0f7`; "John" and "Jamieson" on
+         two lines at 96 px, weight 750, letter-spacing -0.03em, colour
+         `#f1f8fd`; then "johnjamieson.ca" at 34 px, weight 600, in
+         `#8fd0f7`.
+       - **Right:** the photo, 376 × 470, `object-fit: cover`, radius 22 px,
+         with a 2 px `#46698f` ring.
+    2. Run
+       `firefox --headless --no-remote --profile <empty folder> --window-size=1200,630 --screenshot og.png file://…/og.html`.
+    3. Run `magick og.png -strip -quality 88 public/og.jpg`.
   - It shows only the name and the address, so it never goes out of date.
 - **`schema.org/Person` data**, on the home page only, built from the résumé:
   name, job title, Toronto, LinkedIn and GitHub, and the current employer.
@@ -717,6 +765,9 @@ need to (the server README's *To do*, item 1).
     - `usr/local/bin/site-fetch`;
     - `etc/systemd/system/johnjamieson-fetch.service` and `.timer`;
     - `srv/caddy/conf/sites/johnjamieson.caddy`, with the gated block only.
+  - **`site-fetch` uses git (`ls-remote`, `fetch`), never
+    raw.githubusercontent.com.** Right after a deploy on 2026-11-01, the raw
+    URL served the previous `build.json` for a few minutes, from its cache.
   - **Test `site-fetch` on the PC first,** against a throwaway local repo. It
     must:
     - deploy a normal update;

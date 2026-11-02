@@ -113,7 +113,7 @@ Three boundaries matter:
 |---|---|---|---|---|
 | **Facts** | Employers, titles, dates, bullets, skills, education, the summary | Career's `resume.yaml`, copied here as `content/resume.json` | John, with Claude, in Career | Changed only in Career, never edited here (D-1) |
 | **The site's own words** | The headline, the intro, section titles, titles for the selected work, the career phases, "how I work" | `content/site.yaml` | Claude drafts, John approves | They frame and emphasize, but add no facts (D-2) |
-| **Write-ups and projects** | The fuller story of one job; a project | Career's `resume.yaml` (`writeup`, `projects`), both empty for now | John | They're facts, so they live in Career. Each appears on the site once it's filled in |
+| **Website-only bullets, paragraphs and projects** | More bullets than the PDF has; the fuller story of a piece of work; a project | Career's tagged `resume.yaml`, exported as `websiteHighlights` (17 extra bullets and 4 paragraphs since 2026-11-01) and `projects` (empty) | John | They're facts, so they live in Career. Each appears on the site once a page uses it |
 
 Why the split: facts have one home, so the résumé, LinkedIn and the site can't
 disagree. The site's own words belong to the medium. A résumé can't have a
@@ -239,7 +239,9 @@ In order, with where each part comes from:
    - the Circle of Care Dynamics GP migration.
 
    Each card has a title (site) and its résumé bullet (fact), with the employer
-   and the years. Once a job has a `writeup`, its card links to it.
+   and the years. Career has a longer paragraph for each of the four
+   (`websiteHighlights`, `long`). It's loaded but not shown yet: a "Read more"
+   is proposed (BUILD, *Where things stand*).
 4. **Career path.** A timeline from 2011 to now, drawn from every job and
    break and grouped into phases: finance and accounting, retraining, then
    systems and data. The labels are the site's; the years are computed. It
@@ -539,8 +541,9 @@ have to anticipate it.
 
 - **Projects.** Add entries to `projects` in Career's `resume.yaml`, and the
   section and `/projects/` page appear.
-- **Write-ups.** Fill in a job's `writeup`, and its card gains a page with the
-  fuller story. Markdown rendering gets added at that point.
+- **Write-ups.** Career's four paragraphs can open on their cards. A longer
+  story per job (`writeup`) could get its own page, with Markdown rendering
+  added at that point.
 - **Notes.** Short articles in the site's own repo, written in generic terms:
   for example, how to rebuild history from audit logs with SQL. They're a good
   way to show depth, and a natural fit for Astro's content collections.
