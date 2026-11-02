@@ -57,6 +57,7 @@ server, articuno, fetches it from there (ARCHITECTURE §7).
 | `npm test` | The tests of the checks and the content rules |
 | `npm run sync` | Copies Career's export into `content/resume.json` after checking it |
 | `npm run sync -- --check` | Says whether `content/resume.json` matches Career's export |
+| `gh run list --limit 3` | The latest builds on GitHub; `gh run watch <id>` follows one |
 
 ## Day to day
 

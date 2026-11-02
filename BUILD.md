@@ -576,7 +576,9 @@ web, after launch (step 25).
 
 ### Step 15 — Create the repo
 
-**Status:** TODO
+**Status:** DONE 2026-11-01. John created the repo, public and empty, and
+turned on Dependabot alerts and security updates. The API showed it public,
+size 0, with `main` as its default branch.
 
 - **Who:** John, on github.com.
 - **Do:**
@@ -590,7 +592,24 @@ web, after launch (step 25).
 
 ### Step 16 — First push
 
-**Status:** TODO
+**Status:** DONE 2026-11-01.
+
+- **Signing in, a change from the plan:** the PC had no GitHub sign-in. Git
+  had no stored credentials, and no SSH key was on John's account. So John
+  installed GitHub's CLI (`sudo dnf install gh`, 2.97.0) and signed in:
+  `gh auth login --hostname github.com --git-protocol https --web`, then
+  `gh auth setup-git`.
+  - The sign-in is kept in the keyring, with the scopes `repo`, `workflow`,
+    `read:org` and `gist`.
+  - Git uses it through `gh auth git-credential`. Claude can push and check
+    runs (`gh run list`).
+- **Just before the push,** the site learned Career's Stage 2 field
+  `websiteHighlights` (`7552fec`) and synced from Career `ed8562c` (`ccf5a35`).
+  - The new numbers count as facts, and work cards can quote website-only
+    bullets.
+  - `/resume/` keeps to the master's bullets.
+- **Pushed** `main` at `ccf5a35`. GitHub's `content/resume.json` is byte for
+  byte the same as Career's export.
 
 - **Who:** Claude, with John's OK to push.
 - **Do:**
@@ -607,7 +626,30 @@ web, after launch (step 25).
 
 ### Step 17 — The build-and-publish workflow
 
-**Status:** TODO
+**Status:** DONE 2026-11-01, except one check still to come: that a pull
+request runs the checks without publishing. Dependabot's first pull request
+will show it.
+
+- **The workflow, `.github/workflows/site.yml`, follows the outline below.**
+  Where it differs:
+  - concurrency is grouped per branch (`site-${{ github.ref }}`);
+  - the publishing step is named;
+  - the bot's commits use its standard name and address.
+- **Actions pinned:** `actions/checkout` v7.0.1 (`3d3c42e`) and
+  `actions/setup-node` v7.1.0 (`949feb2`). Both are plain tags, so the hash
+  is the commit itself.
+- **`.github/dependabot.yml`:** npm and GitHub Actions, monthly. Minor and
+  patch updates come grouped; each major on its own. It skips TypeScript 7
+  and `@types/node` 25 and on (D-8).
+- **First run** (41375339676, from `8877454`): green in 25 s. `npm run check`
+  showed 0 errors and 20 tests passing; `npm run build` passed its checks on
+  29 files; then it published.
+- **The `deploy` branch:**
+  - one commit, "Deploy 8877454…";
+  - 30 files: the built site plus `build.json`;
+  - `build.json` names `887745439807…`, the pushed commit;
+  - the deployed home page reads "Résumé last updated Nov 2026", so git
+    history reaches the build.
 
 - **Who:** Claude.
 - **Do:** Write `.github/workflows/site.yml`, as in ARCHITECTURE §7.1. An
