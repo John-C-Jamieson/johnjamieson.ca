@@ -22,8 +22,9 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-02)
 
-- **Done:** steps 1–21, 11a and 11b. The preview is at
-  `https://johnjamieson.articuno.johnjamieson.ca`, behind the sign-in page. The site is built and on GitHub, and
+- **Done:** steps 1–21, 23, 11a and 11b. The preview is at
+  `https://johnjamieson.articuno.johnjamieson.ca`, behind the sign-in page,
+  and `@` and `www` have a 5-minute TTL. The site is built and on GitHub, and
   every push to `main` checks, builds and publishes it to the `deploy` branch
   in about 25 s. Career's `make resume` says when the site's copy of the
   résumé is out of date (step 8). The server's side is on paper and tried on
@@ -39,8 +40,6 @@ server's `SETUP.md`.
     shows them yet. Later, they could feed more figures (Salumatics' "more
     than 100 days" down to "within 30 days", say) or a fuller experience
     section.
-  - **John prints `/resume/` once** (Ctrl+P) to confirm the print layout
-    (step 12).
   - **Dependabot's first pull request** confirms that pull requests are
     checked without publishing (step 17).
   - **PageSpeed Insights** after launch (step 25).
@@ -578,7 +577,10 @@ prototyped.
   - No headless Chrome here, so the check was a simulation: the print rules
     switched on in the browser at Letter width. It gave about 1.7 Letter pages
     and looked tidy.
-  - Still to do: John prints it once himself (Ctrl+P) to confirm.
+  - John printed it from the preview on 2026-11-02, in Firefox: two Letter
+    pages, black on white, the header, menu and footer gone, and the links
+    spelled out. Firefox's own headers and footers (the title, address,
+    page numbers and date) are a print-dialog setting, not the site's.
 - **`/projects/`** redirects to `/` while `projects` is empty. The redirect is
   set in `astro.config.mjs` from the data, so it drops out by itself once
   projects exist. Redirect and 404 pages stay out of the sitemap.
@@ -1015,7 +1017,15 @@ same day (INV-11).
 
 ### Step 23 — Lower the TTL
 
-**Status:** TODO
+**Status:** DONE 2026-11-02, at about 12:03, by John; OVHcloud commit
+`15f6dd1` for `namecheap-dns.xlsx`.
+
+- `A @` and `A www` (still `75.2.60.5`, Netlify) went from Automatic, 30
+  minutes, to 5 minutes. Nothing else changed.
+- Both `dns1` and `dns2.registrar-servers.com` answered with a TTL of 300.
+- The old TTL runs out of every cache by about 12:35, so the switch can
+  come any time after that.
+- The sheet's *Planned* tab now holds the switch's two records.
 
 - **Who:** John, at Namecheap; Claude checks.
 - **Do:** Set the TTL of `@` and `www` to 5 minutes. Wait at least 30 minutes
