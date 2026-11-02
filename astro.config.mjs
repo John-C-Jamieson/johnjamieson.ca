@@ -1,13 +1,22 @@
 // @ts-check
 // johnjamieson.ca: the design is in ARCHITECTURE.md.
+import { readFileSync } from "node:fs";
 import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+
+// The old site had a /projects page (2025–2026), and old résumés may link to
+// it. Until the résumé lists projects, that address leads home; once it
+// does, a real page takes over and this redirect drops out by itself.
+const { projects } = JSON.parse(readFileSync("content/resume.json", "utf8"));
+const redirects = projects.length === 0 ? { "/projects": "/" } : {};
 
 export default defineConfig({
   site: "https://johnjamieson.ca",
   // Pages build as folders (/resume/index.html), so links end in a slash.
   trailingSlash: "always",
-  integrations: [sitemap()],
+  redirects,
+  // Redirect pages and the 404 page stay out of the sitemap
+  integrations: [sitemap({ filter: (page) => !page.includes("/projects/") && !page.includes("/404") })],
   // No code blocks on the site. Shiki's inline styles would break the CSP.
   markdown: { syntaxHighlight: false },
 

@@ -1,0 +1,40 @@
+---
+// The "not found" page. The server sends it with a 404 status (ARCHITECTURE §7.3).
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Page not found" description="That page doesn't exist on johnjamieson.ca.">
+  <section class="section">
+    <div class="wrap missing">
+      <h1>Page not found</h1>
+      <p>That page doesn't exist, or it has moved.</p>
+      <p class="links">
+        <a href="/">Go to the home page</a>
+        <a href="/resume/">Read the résumé</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .missing {
+    max-width: var(--measure);
+  }
+
+  h1 {
+    font-size: var(--step-3);
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: var(--space-4);
+    color: var(--ink-2);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    font-weight: 600;
+  }
+</style>

@@ -1,17 +1,30 @@
-/* Printing: black on white, no navigation, no backgrounds. The résumé page
-   gets its own rules in step 12. */
+/* Printing: black on white, without the header, footer or backgrounds.
+   Mainly for the résumé page, which adds its own print rules. */
+
+@page {
+  margin: 14mm 16mm;
+}
 
 @media print {
   :root {
     --bg: #ffffff;
     --ice: #ffffff;
+    --line: #bbbbbb;
     --ink: #000000;
     --ink-2: #222222;
     --muted: #444444;
     --accent: #000000;
+    --accent-strong: #000000;
+    --hero-bg: #ffffff;
+    --hero-ink: #000000;
+    --hero-muted: #444444;
+    --hero-accent: #000000;
+    --button-bg: #ffffff;
+    --button-ink: #000000;
   }
 
-  .site-nav,
+  .site-header,
+  .site-footer,
   .skip-link,
   .no-print {
     display: none !important;

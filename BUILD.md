@@ -448,7 +448,31 @@ were built at step 9; this step checked them and fixed one thing.
 
 ### Step 12 — The résumé page, old links and 404
 
-**Status:** TODO
+**Status:** DONE 2026-11-01.
+
+- **Compared with the Word master** (`soffice --cat`), 38 of its 44 lines
+  appear on the page word for word. The other 6:
+  - the name, which the master sets in capitals;
+  - the contact line, left out on purpose (D-3);
+  - the four skill lines. They come through the export as lists, so the page
+    joins each with commas: "Agile delivery, applied GenAI" where the master
+    has "Agile delivery; applied GenAI", and "Bash, Git" for "Bash; Git". It
+    also drops the colon after each group name.
+- **Print:** the header, footer and backgrounds are hidden, the text is black
+  on white, and the profile links are spelled out.
+  - No headless Chrome here, so the check was a simulation: the print rules
+    switched on in the browser at Letter width. It gave about 1.7 Letter pages
+    and looked tidy.
+  - Still to do: John prints it once himself (Ctrl+P) to confirm.
+- **`/projects/`** redirects to `/` while `projects` is empty. The redirect is
+  set in `astro.config.mjs` from the data, so it drops out by itself once
+  projects exist. Redirect and 404 pages stay out of the sitemap.
+- **`404.astro`** links home and to the résumé.
+- **Added:** the page is now a column, so the footer sits at the bottom even
+  on a short page.
+- **For the server (step 21):** `astro preview` refuses `/resume` without the
+  slash, because of `trailingSlash`. Caddy's file server adds the slash
+  instead. Check `/resume` and `/projects` there.
 
 - **Who:** Claude.
 - **Do:**

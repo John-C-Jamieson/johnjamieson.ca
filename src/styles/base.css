@@ -11,7 +11,11 @@ html {
   text-size-adjust: 100%;
 }
 
+/* A column, so the footer sits at the bottom even on a short page */
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
   background: var(--bg);
   color: var(--ink);
@@ -154,4 +158,8 @@ a:hover {
   .section {
     padding-block: var(--space-7);
   }
+}
+
+main {
+  flex: 1;
 }

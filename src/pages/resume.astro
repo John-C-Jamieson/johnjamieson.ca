@@ -1,7 +1,7 @@
 ---
 // The master résumé in full, as text (ARCHITECTURE §5.1): the Word master's
-// sections in the same order, without contact details. A first pass;
-// BUILD step 12 adds print styles and compares it with the master.
+// sections in the same order, without contact details. It prints as a clean
+// document (the print rules at the end).
 import Base from "../layouts/Base.astro";
 import { loadContent, resumeDate } from "../lib/content.ts";
 
@@ -201,5 +201,81 @@ const place = `${basics.location.city}, ${basics.location.region}`;
     display: grid;
     gap: var(--space-2);
     list-style: none;
+  }
+
+  /* On paper: compact, black on white, with the profile links spelled out */
+  @media print {
+    .resume {
+      width: auto;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      font-size: 10pt;
+      line-height: 1.35;
+    }
+
+    h1 {
+      font-size: 20pt;
+    }
+
+    .label {
+      margin-top: 2pt;
+      font-size: 12pt;
+    }
+
+    .tagline {
+      margin-top: 0;
+      font-size: 10pt;
+    }
+
+    .contact {
+      margin-top: 3pt;
+      font-size: 9pt;
+    }
+
+    .contact a::after {
+      content: " (" attr(href) ")";
+    }
+
+    section {
+      margin-top: 10pt;
+    }
+
+    h2 {
+      margin-bottom: 5pt;
+      padding-bottom: 2pt;
+      font-size: 9pt;
+    }
+
+    .skills {
+      gap: 3pt;
+    }
+
+    .role {
+      margin-bottom: 8pt;
+      break-inside: avoid;
+    }
+
+    h3 {
+      font-size: 11pt;
+    }
+
+    .where,
+    .dates {
+      font-size: 9pt;
+    }
+
+    .position {
+      margin-top: 0;
+    }
+
+    .role ul {
+      gap: 2pt;
+      margin-top: 3pt;
+    }
+
+    .education {
+      gap: 2pt;
+    }
   }
 </style>
