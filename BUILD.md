@@ -530,7 +530,32 @@ were built at step 9; this step checked them and fixed one thing.
 
 ### Step 14 — Quality pass
 
-**Status:** TODO
+**Status:** DONE 2026-11-01, except Lighthouse. It runs only in Chrome, and
+there's none on the PC, so run PageSpeed Insights, which is Lighthouse on the
+web, after launch (step 25).
+
+- **`npm run check`:** 0 errors, 19 tests passing, and the content checks
+  pass. `npm run build` passes its checks on all 29 files.
+- **Weight on a first visit** (HTML and CSS gzipped, as Caddy will send them):
+
+  | Page | HTML + CSS + font | With the photo |
+  |---|---|---|
+  | Home | 54.8 KB | 60.7 KB at 1x, 74.1 KB at 2x |
+  | Résumé | 53.6 KB | — |
+  | 404 | 50.5 KB | — |
+
+  The budget was 300 KB. The 47 KB font is cached after the first page.
+- **Headings:** each page has one `h1`, `h2` sections with `h3` under them,
+  and no skipped levels.
+- **Alt text:** every image has it.
+- **Contrast:** checked by `scripts/design.test.ts` (step 9). Focus rings
+  fixed at step 11.
+- **Links:** internal links are checked on every build. Of the external ones,
+  the GitHub profile answers 200. The source link,
+  `github.com/John-C-Jamieson/johnjamieson.ca`, answers 404 until the repo
+  exists (steps 15–16). LinkedIn refuses automated checks.
+- **Printing** was simulated at step 12; John confirms with Ctrl+P.
+- **Phone layout:** checked at 375 px (step 9) and 320 px (step 11).
 
 - **Who:** Claude. John can also run Lighthouse in his own Chrome.
 - **Do:** Run `npm run check`, then check:
