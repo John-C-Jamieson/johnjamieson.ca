@@ -33,10 +33,8 @@ server's `SETUP.md`.
 - **Netlify still serves the old site** at `john-jamieson.netlify.app`,
   internal system names included, until step 26.
 - **Next, in order:**
-  1. **John, on his phone on mobile data:** open johnjamieson.ca (step 24).
-  2. **Step 25:** LinkedIn's Post Inspector, and PageSpeed Insights.
-  3. **Steps 26–28,** a day or two later: retire Netlify and the old repo,
-     then remove the preview and tidy the records.
+  1. **Steps 26–28,** a day or two after the switch: retire Netlify and the
+     old repo, then remove the preview and tidy the records.
 - **Open items:**
   - **The 17 website-only bullets** are facts the site may quote, but no page
     shows them yet. Later, they could feed more figures (Salumatics' "more
@@ -44,7 +42,7 @@ server's `SETUP.md`.
     section.
   - **Dependabot's first pull request** confirms that pull requests are
     checked without publishing (step 17).
-  - **PageSpeed Insights** after launch (step 25).
+  - **PageSpeed Insights** (step 25): it wouldn't run on 2026-11-02.
 
 ## Overview
 
@@ -1042,8 +1040,8 @@ hold.
 ### Step 24 — The switch
 
 **Status:** DONE 2026-11-02, about 13:00: johnjamieson.ca is live on
-articuno. The server's SETUP 29, OVHcloud commit `7b404e4`. Still to come:
-John's look from his phone on mobile data.
+articuno. The server's SETUP 29, OVHcloud commit `7b404e4`. John's phone
+loaded it on mobile data, Wi-Fi off, where the PC can't check IPv6.
 
 - **DNS, John at Namecheap, about 12:55:** `ALIAS @` and `CNAME www`, both
   to `articuno.johnjamieson.ca`, at 5 minutes. At 12:58, Namecheap and
@@ -1093,12 +1091,22 @@ John's look from his phone on mobile data.
 
 ### Step 25 — After launch
 
-**Status:** started 2026-11-02. Claude's checks passed at the switch:
-`/resume` and `/projects` get a `308` to the same with a slash, and the
-`www.` versions a `301` to the bare name; `/projects/` leads home; the
-sitemap, `robots.txt` and the preview image load; a missing page gets the
-404 page. Left: John's LinkedIn Post Inspector check, and PageSpeed
-Insights (step 14).
+**Status:** DONE 2026-11-02, apart from PageSpeed Insights.
+
+- **Old links,** checked by Claude at the switch: `/resume` and `/projects`
+  get a `308` to the same with a slash, and the `www.` versions a `301` to
+  the bare name; `/projects/` leads home; the sitemap, `robots.txt` and the
+  preview image load; a missing page gets the 404 page.
+- **LinkedIn's Post Inspector** (John): the card shows the preview image,
+  the title "John Jamieson · Data & BI Analyst — Financial Systems", the
+  description and `johnjamieson.ca`. It followed `http://` with a `308` to
+  `https://johnjamieson.ca/`, the canonical address. Its red "No author
+  found" and "No publication date found" are optional article fields, which
+  a home page doesn't need.
+- **PageSpeed Insights** (step 14) didn't run: the web page hung on
+  "Running analysis", and the keyless API had used its shared daily quota.
+  Try again another day, or in John's own Chrome (DevTools → Lighthouse).
+- **Google Search Console** stays optional, John's call (a DNS TXT record).
 
 - **Who:** Claude, then John.
 - **Do:**
