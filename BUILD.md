@@ -22,7 +22,7 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-02)
 
-- **Done:** steps 1–18, 11a and 11b. The site is built and on GitHub, and
+- **Done:** steps 1–19, 11a and 11b. The site is built and on GitHub, and
   every push to `main` checks, builds and publishes it to the `deploy` branch
   in about 25 s. Career's `make resume` says when the site's copy of the
   résumé is out of date (step 8). The server's side is on paper and tried on
@@ -30,9 +30,8 @@ server's `SETUP.md`.
 - **Not live yet.** johnjamieson.ca still points at the old Netlify site,
   which shows the internal system names until the switch (step 24).
 - **Next, in order:**
-  1. **Phase E, steps 19–22, on articuno.** Before step 19, the first change
-     on the server, John decides whether to read over the platform first
-     (the server README's *To do*, item 1). Step 19 is the server's BLD-13.
+  1. **Phase E, steps 20–22, on articuno.** Step 20 is the server's BLD-14,
+     the fetch, with John's one-time OK for its deletes (INV-11).
   2. **Phase F (steps 23–28):** the switch.
 - **Open items:**
   - **The 17 website-only bullets** are facts the site may quote, but no page
@@ -900,7 +899,17 @@ DEC-30 to DEC-32 as written. Nothing changed on the server.
 
 ### Step 19 — The small Caddy
 
-**Status:** TODO
+**Status:** DONE 2026-11-02: the server's SETUP 26, OVHcloud commit
+`8eaaad7`. John went ahead without his own read of the platform.
+
+- `static-caddy-1` is up, with only the three warnings every Caddy start
+  prints, and the empty folder answers `404` on `127.0.0.1:8001`.
+- **Invariants:** INV-1 unchanged; INV-2 one new mapping,
+  `127.0.0.1:8001->8001/tcp`; INV-3 and INV-12 as expected; INV-4 0.66 GiB
+  of limits in all; INV-5 Caddy's line alone. Its only host folders are
+  `/srv/static/conf` and `/srv/sites`, both read-only.
+- The server's drift check for `server/srv/static/` is clean, and the gated
+  sites and the test page answered as before.
 
 - **Who:** Claude writes and checks the script; John runs it.
 - **Do:** the server's BLD-13, which has the commands and both files. In
