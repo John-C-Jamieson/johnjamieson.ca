@@ -22,9 +22,9 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-01)
 
-- **Done:** steps 1–7 and 9–17. The site is built and on GitHub, and every
-  push to `main` checks, builds and publishes it to the `deploy` branch in
-  about 25 s.
+- **Done:** steps 1–7, 9–17 and 11a. The site is built and on GitHub, and
+  every push to `main` checks, builds and publishes it to the `deploy` branch
+  in about 25 s.
 - **Not live yet.** johnjamieson.ca still points at the old Netlify site,
   which shows the internal system names until the switch (step 24).
 - **Next, in order:**
@@ -35,11 +35,6 @@ server's `SETUP.md`.
      README's *To do*, item 1) is optional; ask whether he wants it first.
   3. **Phase F (steps 23–28):** the switch.
 - **Open items:**
-  - **"Read more" on the work cards** (John to decide). Career's
-    `websiteHighlights` carry a first-person paragraph (`long`) for each of
-    the four proof points, and all four are matched by the cards' `find`
-    phrases. They're loaded (`Content.work[].long`) but not shown. Proposal:
-    a `<details>` "Read more" on each card, which needs no JavaScript.
   - **The 17 website-only bullets** are facts the site may quote, but no page
     shows them yet. Later, they could feed more figures (Salumatics' "more
     than 100 days" down to "within 30 days", say) or a fuller experience
@@ -479,6 +474,44 @@ were built at step 9; this step checked them and fixed one thing.
   - `dist/` has no `.js` files.
   - John reviews it in the browser pane.
 - **Record:** here.
+
+### Step 11a — "Read more" on the work cards
+
+**Status:** DONE 2026-11-01. John chose it from the proposal, as
+prototyped.
+
+- **What it does:** each card keeps its title and résumé bullet. Under the
+  bullet, "Read more" opens Career's longer paragraph for that bullet
+  (`websiteHighlights`, `long`), and the label turns to "Show less". A card
+  whose bullet has no paragraph shows no "Read more".
+- **No JavaScript:** it's HTML's `<details>`, styled as a text button in the
+  link colour with a chevron. The CSP needed no change. The two labels live
+  in the template, like "Read the résumé"; the paragraphs are facts.
+- **Screen readers:** each control takes its card's title as its description
+  (`aria-describedby`), so the four can be told apart.
+- **The grid:** cards in a row share a height, so on a wide screen, opening
+  one leaves blank space under its neighbour. Kept: closed is how most
+  visitors see them, and closed they line up.
+- **Checked:** mouse, touch and keyboard (Enter opens, Tab moves on, with the
+  focus ring), at 375 px and 1280 px, in light and dark. Nothing scrolls
+  sideways, and the build passes its checks on 29 files.
+- **Weight:** the home page's HTML grew by 3.5 KB (1.0 KB gzipped) and its
+  CSS by 1.0 KB (0.2 KB), so a first visit is about 56 KB before the photo
+  (step 14).
+- **Not chosen:**
+  - the paragraphs always open: about 380 more words, on a page meant to
+    read in thirty seconds;
+  - the paragraph in place of the bullet: the card would stop quoting the
+    résumé;
+  - a page per piece of work: ARCHITECTURE §9 keeps that for longer
+    write-ups.
+
+- **Who:** Claude proposes and builds; John chooses.
+- **Do:** show Career's four paragraphs on the work cards, with no
+  JavaScript.
+- **Expect:** each card opens and closes by mouse, touch and keyboard, and
+  the build's checks pass.
+- **Record:** here, and ARCHITECTURE §5.2.
 
 ### Step 12 — The résumé page, old links and 404
 

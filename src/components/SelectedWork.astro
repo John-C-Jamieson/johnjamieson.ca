@@ -1,5 +1,7 @@
 ---
-// Selected work: the site's title over the résumé bullet it quotes.
+// Selected work: the site's title over the résumé bullet it quotes, and
+// Career's longer paragraph behind "Read more" where there is one. <details>
+// opens without JavaScript (D-9).
 import { year } from "../lib/content.ts";
 import type { Content } from "../lib/content.ts";
 
@@ -18,13 +20,23 @@ const span = (start: string, end?: string) => `${year(start)}–${end ? year(end
     {intro && <p class="section-intro">{intro}</p>}
     <ul class="cards">
       {
-        work.map((w) => (
+        work.map((w, i) => (
           <li class="card">
             <p class="meta tnum">
               {w.job.name} · {span(w.job.startDate, w.job.endDate)}
             </p>
-            <h3>{w.title}</h3>
+            <h3 id={`work-${i + 1}`}>{w.title}</h3>
             <p class="text">{w.bullet}</p>
+            {w.long && (
+              <details class="more">
+                {/* The card's title as the description, so the four controls can be told apart */}
+                <summary aria-describedby={`work-${i + 1}`}>
+                  <span class="closed">Read more</span>
+                  <span class="opened">Show less</span>
+                </summary>
+                <p class="text">{w.long}</p>
+              </details>
+            )}
           </li>
         ))
       }
@@ -62,6 +74,50 @@ const span = (start: string, end?: string) => `${year(start)}–${end ? year(end
   .text {
     margin-top: var(--space-3);
     color: var(--ink-2);
+  }
+
+  .more {
+    margin-top: var(--space-4);
+  }
+
+  /* A text button in the link colour, with a chevron in place of the triangle */
+  .more summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--accent);
+    font-weight: 600;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .more summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .more summary::after {
+    content: "";
+    flex: none;
+    width: 0.4em;
+    height: 0.4em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-0.15em) rotate(45deg);
+  }
+
+  .more[open] summary::after {
+    transform: translateY(0.1em) rotate(225deg);
+  }
+
+  .more summary:hover {
+    color: var(--accent-strong);
+    text-decoration: underline 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  .more[open] .closed,
+  .more:not([open]) .opened {
+    display: none;
   }
 
   @media (max-width: 48rem) {

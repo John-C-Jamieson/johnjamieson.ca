@@ -2,7 +2,8 @@
 
 **For John.** This is the design of the new johnjamieson.ca and the reasons
 behind it; `BUILD.md` turns it into steps. Planned on 2026-11-01. The old site was
-cleared out the same day (BUILD step 3); the new one isn't built yet.
+cleared out the same day (BUILD step 3); the new one is built and on GitHub,
+but not live yet.
 
 How to read it:
 
@@ -239,9 +240,9 @@ In order, with where each part comes from:
    - the Circle of Care Dynamics GP migration.
 
    Each card has a title (site) and its résumé bullet (fact), with the employer
-   and the years. Career has a longer paragraph for each of the four
-   (`websiteHighlights`, `long`). It's loaded but not shown yet: a "Read more"
-   is proposed (BUILD, *Where things stand*).
+   and the years. Under the bullet, "Read more" opens Career's longer
+   paragraph for it (`websiteHighlights`, `long`). It's HTML's `<details>`,
+   so it needs no JavaScript (BUILD step 11a).
 4. **Career path.** A timeline from 2011 to now, drawn from every job and
    break and grouped into phases: finance and accounting, retraining, then
    systems and data. The labels are the site's; the years are computed. It
@@ -541,9 +542,9 @@ have to anticipate it.
 
 - **Projects.** Add entries to `projects` in Career's `resume.yaml`, and the
   section and `/projects/` page appear.
-- **Write-ups.** Career's four paragraphs can open on their cards. A longer
-  story per job (`writeup`) could get its own page, with Markdown rendering
-  added at that point.
+- **Write-ups.** Career's four paragraphs already open on their cards (BUILD
+  step 11a). A longer story per job (`writeup`) could get its own page, with
+  Markdown rendering added at that point.
 - **Notes.** Short articles in the site's own repo, written in generic terms:
   for example, how to rebuild history from audit logs with SQL. They're a good
   way to show depth, and a natural fit for Astro's content collections.
