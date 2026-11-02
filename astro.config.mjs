@@ -8,6 +8,7 @@ import sitemap from "@astrojs/sitemap";
 // it. Until the résumé lists projects, that address leads home; once it
 // does, a real page takes over and this redirect drops out by itself.
 const { projects } = JSON.parse(readFileSync("content/resume.json", "utf8"));
+/** @type {Record<string, string>} */
 const redirects = projects.length === 0 ? { "/projects": "/" } : {};
 
 export default defineConfig({
