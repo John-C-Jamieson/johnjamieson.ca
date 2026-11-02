@@ -22,7 +22,7 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-02)
 
-- **Done:** steps 1–19, 11a and 11b. The site is built and on GitHub, and
+- **Done:** steps 1–20, 11a and 11b. The site is built and on GitHub, and
   every push to `main` checks, builds and publishes it to the `deploy` branch
   in about 25 s. Career's `make resume` says when the site's copy of the
   résumé is out of date (step 8). The server's side is on paper and tried on
@@ -30,8 +30,8 @@ server's `SETUP.md`.
 - **Not live yet.** johnjamieson.ca still points at the old Netlify site,
   which shows the internal system names until the switch (step 24).
 - **Next, in order:**
-  1. **Phase E, steps 20–22, on articuno.** Step 20 is the server's BLD-14,
-     the fetch, with John's one-time OK for its deletes (INV-11).
+  1. **Phase E, steps 21–22, on articuno.** Step 21 is the gated preview
+     (the server's RCP-4 step 5), then John's launch review.
   2. **Phase F (steps 23–28):** the switch.
 - **Open items:**
   - **The 17 website-only bullets** are facts the site may quote, but no page
@@ -931,7 +931,20 @@ DEC-30 to DEC-32 as written. Nothing changed on the server.
 
 ### Step 20 — The fetch
 
-**Status:** TODO
+**Status:** DONE 2026-11-02: the server's SETUP 27, OVHcloud commit
+`4190726`. John okayed `rsync`'s deletes in `/srv/sites/johnjamieson` the
+same day (INV-11).
+
+- **First run:** `deployed 48973621ba3d: Deploy 2309965…`, and
+  `/srv/sites/johnjamieson/build.json` names `2309965`, the latest commit on
+  `main`. 30 files, no symlinks; the state folder is `john`'s.
+- **Second run** and the timer's first: `up to date`. The next run was five
+  minutes on, and no unit failed. `git ls-remote` from the PC showed the
+  same commit on `deploy`.
+- **The small Caddy** now answers `200` on `127.0.0.1:8001`. Nothing is
+  reachable from outside until step 21.
+- **The fetch's journal** needs no `sudo`, since it runs as `john`:
+  `journalctl -u johnjamieson-fetch.service`.
 
 - **Who:** Claude writes and checks the script; John runs it and gives the
   one-time OK for `rsync`'s deletes in `/srv/sites/johnjamieson` (INV-11).
