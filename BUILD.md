@@ -22,18 +22,17 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-01)
 
-- **Done:** steps 1–7, 9–17, 11a and 11b. The site is built and on GitHub,
-  and every push to `main` checks, builds and publishes it to the `deploy`
-  branch in about 25 s.
+- **Done:** steps 1–17, 11a and 11b. The site is built and on GitHub, and
+  every push to `main` checks, builds and publishes it to the `deploy` branch
+  in about 25 s. Career's `make resume` says when the site's copy of the
+  résumé is out of date (step 8).
 - **Not live yet.** johnjamieson.ca still points at the old Netlify site,
   which shows the internal system names until the switch (step 24).
 - **Next, in order:**
-  1. **Step 8,** Career's drift notice. It's unblocked: Career's tagged-master
-     work is finished (Career commit `995b46d`).
-  2. **Phase E (steps 18–22), on articuno.** It starts on paper, in
+  1. **Phase E (steps 18–22), on articuno.** It starts on paper, in
      `~/Projects/OVHcloud`. John's own read of the platform (the server
      README's *To do*, item 1) is optional; ask whether he wants it first.
-  3. **Phase F (steps 23–28):** the switch.
+  2. **Phase F (steps 23–28):** the switch.
 - **Open items:**
   - **The 17 website-only bullets** are facts the site may quote, but no page
     shows them yet. Later, they could feed more figures (Salumatics' "more
@@ -326,7 +325,29 @@ needs the synced résumé.
 
 ### Step 8 — Career reports website drift (D-12)
 
-**Status:** TODO
+**Status:** DONE 2026-11-01, in Career commit `be8ff72`.
+
+- **The check:** the last thing `build.py` does is compare the new export
+  with `content/resume.json` here, byte for byte, as
+  `npm run sync -- --check` does. It prints one line:
+  - "Website: up to date";
+  - "Website: out of date: run npm run sync in ~/Projects/johnjamieson.ca",
+    also when this repo has no copy yet;
+  - "Website: ~/Projects/johnjamieson.ca not found, so not compared", a note
+    rather than an error, if this folder is missing.
+
+  It only reads. It runs only when the build succeeds, since a failed build
+  writes nothing.
+- **Added for the tests:** `WEBSITE_DIR` points the check at another folder.
+  `make test` has 5 new checks, 70 in all, all passing: a matching copy, a
+  differing one, none yet, a missing folder, and that the site's file is
+  never written.
+- **Career's docs:** `CLAUDE.md` (a fourth step after a fact changes, and
+  the command list), `README.md`, `Build/README.md` (workflow step 5, a
+  paragraph on the check and the `build.py` row) and `HANDOFF.md` (a dated
+  entry, and the website item now points to this file).
+- **Result:** `make resume` in Career ended with "Website: up to date", and
+  every output was unchanged.
 
 - **Who:** Claude, in Career (its `CLAUDE.md` applies), with John's OK.
 - **Do:**
@@ -1020,7 +1041,8 @@ need to (the server README's *To do*, item 1).
 
 **Update the résumé on the site**
 
-1. In Career: edit `resume.yaml`, run `make resume`, and commit.
+1. In Career: edit `resume.yaml`, run `make resume`, and commit. Its last
+   line says whether this site's copy is out of date (step 8).
 2. Here: run `npm run sync`, look over `git diff content/resume.json`, commit
    as "Résumé: sync from Career <commit>", and push.
 3. It's live within about ten minutes. To confirm:
