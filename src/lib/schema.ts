@@ -3,7 +3,7 @@
 // stops the sync and the build, so a change in Career gets shown on purpose.
 //
 // resume.json follows Career's Public Export/README.md: JSON Resume v1.0.0
-// plus tagline, work type, positionNote and writeup.
+// plus tagline, work type, positionNote, writeup and websiteHighlights.
 import { z } from "astro/zod";
 
 const text = z.string().min(1);
@@ -18,6 +18,10 @@ const job = z.strictObject({
   startDate: date,
   endDate: date.optional(),
   highlights: z.array(text).min(1),
+  // Every bullet for the website: the master's first, then website-only ones,
+  // each with an optional longer paragraph. Career's Stage 2, 2026-11-01.
+  // /resume/ keeps to highlights, so it still matches the PDF.
+  websiteHighlights: z.array(z.strictObject({ text, long: text.optional() })).min(1).optional(),
   writeup: text.optional(),
 });
 

@@ -15,6 +15,7 @@ export class ContentError extends Error {}
 export interface Quote {
   job: Job;
   bullet: string;
+  long?: string; // the bullet's longer paragraph, if Career has one
 }
 
 export interface Phase {
@@ -100,7 +101,10 @@ export function checkContent(resume: Resume, site: Site): Content {
       problems.push(`${where}: "${source.job}" is a break, which has no bullets`);
       return undefined;
     }
-    const matches = entry.highlights.filter((h) => h.includes(source.find));
+    // The website's list where there is one: it repeats the master's bullets,
+    // then adds website-only ones, so searching both would find doubles.
+    const bullets = entry.websiteHighlights ?? entry.highlights.map((text) => ({ text, long: undefined }));
+    const matches = bullets.filter((b) => b.text.includes(source.find));
     if (matches.length !== 1) {
       problems.push(
         matches.length === 0
@@ -109,7 +113,7 @@ export function checkContent(resume: Resume, site: Site): Content {
       );
       return undefined;
     }
-    return { job: entry, bullet: matches[0] };
+    return { job: entry, bullet: matches[0].text, long: matches[0].long };
   };
 
   const figures: Content["figures"] = [];

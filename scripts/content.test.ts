@@ -133,6 +133,26 @@ test("the contract is strict: unknown fields and bad dates are refused", () => {
   assert.throws(() => parseSite("hero: {}\n"), /expected fields/);
 });
 
+test("website-only bullets count as facts, can be quoted, and bring their paragraph", () => {
+  const r = resume();
+  const bank = r.work[0];
+  assert.ok(bank.type === "job");
+  bank.websiteHighlights = [
+    ...bank.highlights.map((text) => ({ text })),
+    { text: "Rebuilt 12 monthly reports as one model.", long: "A longer story about the model." },
+  ];
+  const s = site();
+  s.hero.intro = "Twelve reports, now 12 in one model."; // 12 appears only in the website-only bullet
+  s.work.push({ title: "One model", source: { job: "Example Bank", find: "one model" } });
+  const content = checkContent(r, s);
+  const card = content.work.find((w) => w.title === "One model");
+  assert.equal(card?.bullet, "Rebuilt 12 monthly reports as one model.");
+  assert.equal(card?.long, "A longer story about the model.");
+  // A master bullet sits in both lists, but is still found once
+  assert.match(content.figures[0].bullet, /78% saving/);
+  assert.equal(content.figures[0].long, undefined);
+});
+
 test("dates read the way each page prints them", () => {
   assert.equal(resumeDate("2025-11"), "11/2025");
   assert.equal(resumeDate("2021"), "2021");
