@@ -39,6 +39,36 @@
         "Built a 13+ field insured-mortgage audit report for a major bank client, refined through multiple stakeholder review rounds, matched to application screens, and saved as reusable SQL for repeat pulls.",
         "Designed and prototyped an AI-assisted semantic search over historical ticket data (vector embeddings / retrieval-augmented generation) to turn operational history into a reusable knowledge base; evaluated local vs. API embedding options against security and tooling constraints and documented the architecture and blockers.",
         "Build and maintain documentation, queries, and data/knowledge assets used across a cross-functional team; proposed a business-function-based model for application health monitoring of a complex, undocumented environment."
+      ],
+      "websiteHighlights": [
+        {
+          "text": "Write SQL against MS SQL Server for ad-hoc reporting and data-extract requests: 30+ resolved in just over six months across 5+ business areas, including mortgage operations, broker relationships, residential taxes, and transformation projects."
+        },
+        {
+          "text": "Turn vague requests into testable report definitions (source, grain, date logic, status and duplicate rules); e.g., delivered a 459-event, 288-transaction document-activity report from undocumented application data as an auditable Excel extract.",
+          "long": "One request gave me only a few document identifiers and a start date, for an application whose data wasn't documented. I worked out how deal requests, document details and document definitions link from SQL Server's metadata and the application's configuration, then wrote the report's definition down before the query: its source, one row per generation event, how each status counts, and how duplicates are handled. Along the way I caught an identifier mapping that would have dropped one form, and kept subordinate reports from being counted twice. The result was an auditable Excel extract of 459 events across 288 transactions, with the SQL kept so it can be reproduced."
+        },
+        {
+          "text": "Reconstructed historical identifier changes for 300+ records from field-level audit logs with read-only SQL; normalized inconsistent null and placeholder values, preserved multi-step histories, and resolved every populated record."
+        },
+        {
+          "text": "Built a 13+ field insured-mortgage audit report for a major bank client, refined through multiple stakeholder review rounds, matched to application screens, and saved as reusable SQL for repeat pulls."
+        },
+        {
+          "text": "Designed and prototyped an AI-assisted semantic search over historical ticket data (vector embeddings / retrieval-augmented generation) to turn operational history into a reusable knowledge base; evaluated local vs. API embedding options against security and tooling constraints and documented the architecture and blockers."
+        },
+        {
+          "text": "Build and maintain documentation, queries, and data/knowledge assets used across a cross-functional team; proposed a business-function-based model for application health monitoring of a complex, undocumented environment."
+        },
+        {
+          "text": "Validate data across mortgage origination, servicing and customer-portal systems before delivery, including one-to-many applicant and contact relationships; e.g., found which system held reliable phone numbers for a contact extract and recommended it as the source."
+        },
+        {
+          "text": "Pin down field definitions, date logic, and terms such as “submitted” vs. “closed” deals before writing a query; e.g., clarified and delivered a broker-relationship report the same day it was requested."
+        },
+        {
+          "text": "Analyzed a year of broker-portal usage (active users, successful logins, and document submissions) for a high-priority transformation initiative."
+        }
       ]
     },
     {
@@ -60,6 +90,30 @@
         "Designed and built SQL- and eazyBI-driven reports and dashboards in JIRA and Confluence that directors and managers relied on for decision-making.",
         "Automated and refactored production code and reporting for maintainability — e.g., consolidated a four-file, 674-line program to two files (378 lines), a 44% reduction.",
         "Recognized ServiceNow subject-matter expert; analyzed logs, stack traces, and metrics to diagnose complex issues and led root-cause analysis to protect service reliability."
+      ],
+      "websiteHighlights": [
+        {
+          "text": "Designed and built SQL- and eazyBI-driven reports and dashboards in JIRA and Confluence that directors and managers relied on for decision-making.",
+          "long": "As a Senior Change Planning Analyst at CIBC, I worked with directors and managers to pin down what they needed to see, then designed and built new, complex reports and dashboards in JIRA and Confluence, driven by SQL and eazyBI. Leadership relied on them for decisions. Alongside the reporting, I trained technical teams one-on-one on the bank's change-management controls, which cut roadblocks and sped up change submission and approval."
+        },
+        {
+          "text": "Automated and refactored production code and reporting for maintainability — e.g., consolidated a four-file, 674-line program to two files (378 lines), a 44% reduction."
+        },
+        {
+          "text": "Recognized ServiceNow subject-matter expert; analyzed logs, stack traces, and metrics to diagnose complex issues and led root-cause analysis to protect service reliability."
+        },
+        {
+          "text": "Trained and supported technical teams one-on-one on the bank's change-management controls, sharply reducing roadblocks and speeding up change submission and approval."
+        },
+        {
+          "text": "Moved changes through end-stage testing (UAT and SAT) into production on the bank's main ServiceNow platform as part of the quality-assurance team."
+        },
+        {
+          "text": "Reviewed the design and code of the bank's main ServiceNow workflows, tables, and catalog items for defects, and drafted new code for developer review; self-taught in ServiceNow's Glide classes and Script Includes."
+        },
+        {
+          "text": "Attended the bank's Technical Advisory Board (TAB) and Change Advisory Board (CAB) meetings, and helped the Change Management team review and screen change requests."
+        }
       ]
     },
     {
@@ -81,6 +135,24 @@
       "highlights": [
         "Built and automated a new revenue and cost-of-sales reporting system spanning hundreds of projects, multiple currencies, and multiple entities; automated journal-entry uploads and consolidation (Tagetik).",
         "Cut monthly reporting turnaround from up to a week to hours through model automation and process redesign; led the IAS 18 → IFRS 15 revenue-recognition implementation."
+      ],
+      "websiteHighlights": [
+        {
+          "text": "Built and automated a new revenue and cost-of-sales reporting system spanning hundreds of projects, multiple currencies, and multiple entities; automated journal-entry uploads and consolidation (Tagetik).",
+          "long": "In Entertainment One's television division, revenue and cost of sales had to be worked out every month for hundreds of projects, in several currencies, across entities in Canada, the UK and the US. I built a new reporting system for it and automated the models behind it, the journal entries, and their upload to CCH Tagetik for consolidation, which cut the monthly turnaround from as much as a week to hours. When IFRS 15 replaced IAS 18, I led key workstreams of the transition: my analysis of its impact on three years of financial statements became the basis of the adjustments made in Tagetik."
+        },
+        {
+          "text": "Cut monthly reporting turnaround from up to a week to hours through model automation and process redesign; led the IAS 18 → IFRS 15 revenue-recognition implementation."
+        },
+        {
+          "text": "Integrated FP&A's revenue forecast into the monthly actuals process as a validation check, improving the quality and turnaround of revenue reporting."
+        },
+        {
+          "text": "Contributed reporting-requirements analysis to a new accounting-system implementation, and mapped and validated data for a chart-of-accounts unification."
+        },
+        {
+          "text": "Took over and grew the monthly Opex report, took on the future-sales report, and ran the TV division's investment-in-content schedule and model, improving its turnaround and accuracy."
+        }
       ]
     },
     {
@@ -93,6 +165,30 @@
       "highlights": [
         "Replaced a manual, multi-spreadsheet close with an automated process pulling data via SQL from the core database, improving reporting speed and accuracy.",
         "Led a Microsoft Dynamics (GP) version migration end-to-end — testing, implementation, and validation — and became the go-to user for data analysis out of the system."
+      ],
+      "websiteHighlights": [
+        {
+          "text": "Replaced a manual, multi-spreadsheet close with an automated process pulling data via SQL from the core database, improving reporting speed and accuracy."
+        },
+        {
+          "text": "Led a Microsoft Dynamics (GP) version migration end-to-end — testing, implementation, and validation — and became the go-to user for data analysis out of the system.",
+          "long": "At Circle of Care I led the upgrade of Microsoft Dynamics GP to GP 2015 from start to finish: I wrote the test plans, ran the implementation and validated the results, with no downtime. I also redesigned the chart of accounts so the organization could budget by department, and loaded it with a data-driven process that took one afternoon instead of the days of manual entry that had been planned. Managers came to me first for data out of the system, and I trained managers, new hires and other departments on GP and Excel."
+        },
+        {
+          "text": "Redesigned and implemented a new chart of accounts to enable a departmental budgeting system, and built a data-driven load process that took one afternoon instead of the planned days of manual entry."
+        },
+        {
+          "text": "Created the organization's quarterly and annual financial reports, plus financial analysis and performance dashboards for departments."
+        },
+        {
+          "text": "Designed the weekly report package that management used to track progress against yearly goals, and redesigned the department's progress trackers around what managers needed."
+        },
+        {
+          "text": "Prepared budgets and forecasts for the organization's largest program, its Holocaust survivors' assistance program, and supported the budgets of all other programs."
+        },
+        {
+          "text": "Found a major process mistake that was leaving frontline employees idle for hours, saving the organization tens of thousands of dollars."
+        }
       ]
     },
     {
@@ -104,6 +200,17 @@
       "endDate": "2014-06",
       "highlights": [
         "Built custom metrics dashboards and automated routine reporting, giving management real-time visibility into financial data."
+      ],
+      "websiteHighlights": [
+        {
+          "text": "Built custom metrics dashboards and automated routine reporting, giving management real-time visibility into financial data."
+        },
+        {
+          "text": "Introduced a structured accounts-receivable collection process that took some clients from more than 100 days outstanding to almost all invoices collected within 30 days."
+        },
+        {
+          "text": "Produced daily and weekly cash-flow projections and financial analysis reports for management and board meetings, improving cash management and business planning."
+        }
       ]
     }
   ],
