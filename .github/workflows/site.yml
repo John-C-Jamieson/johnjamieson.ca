@@ -1,0 +1,49 @@
+# Checks and builds the site on every push and pull request. On pushes to
+# main it also publishes the built site to the deploy branch, which articuno
+# fetches every five minutes (ARCHITECTURE §7.1, server DEC-26).
+name: site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: write # only to push the deploy branch
+
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  site:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # the history, for "Résumé last updated"
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build # includes the checks on dist/
+
+      # dist/ becomes the deploy branch: one commit, force-pushed, no history
+      # (D-17). build.json says which commit is live.
+      - name: Publish to the deploy branch
+        if: github.event_name == 'push'
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          printf '{"commit":"%s","built":"%s"}\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build.json
+          cd dist
+          git init -q -b deploy
+          git add -A
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Deploy $GITHUB_SHA"
+          git push -q -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" deploy
