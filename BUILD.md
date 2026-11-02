@@ -405,7 +405,29 @@ needs the synced résumé.
 
 ### Step 11 — The home page
 
-**Status:** TODO
+**Status:** DONE 2026-11-01. The sections, the photo and "Résumé last updated"
+were built at step 9; this step checked them and fixed one thing.
+
+- **Facts:** all 4 work cards quote a résumé bullet word for word. The only
+  numbers on the page that aren't résumé facts are the browser setting
+  `initial-scale=1` and the footer's "last updated" year.
+- **Photo colours:** the original is Adobe RGB, and sharp converts it to sRGB
+  correctly.
+  - Compared with a properly converted copy, the error (RMSE) is 0.0135;
+    against an unconverted copy it's 0.0209.
+  - Mean saturation is 0.080, against 0.078 for the converted copy and 0.059
+    for the unconverted one.
+  - The web copies carry no colour profile. They come as AVIF and WebP, with
+    a JPEG fallback, from 160 to 640 px wide.
+- **At 320 px:** nothing is wider than the screen (`scrollWidth` 320).
+- **Keyboard:**
+  - The skip link comes first, and every link shows a focus ring.
+  - **Fixed:** on the navy header, hero and footer, the ring used the page's
+    blue (`#1a6db3`). That's about 2.9:1 on navy, below WCAG's 3:1 for focus
+    indicators.
+  - Each surface now sets `--focus` to its own accent, so the ring is ice
+    blue there (9.4:1).
+- **No JavaScript:** the build's own check confirms there's none.
 
 - **Who:** Claude.
 - **Do:**
