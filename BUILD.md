@@ -20,18 +20,19 @@ server's `SETUP.md`.
   from 25, SPEC §4, and `server/`.
 - **Career steps** (8 and 28) follow `~/Projects/Career/CLAUDE.md`.
 
-## Where things stand (2026-11-01)
+## Where things stand (2026-11-02)
 
-- **Done:** steps 1–17, 11a and 11b. The site is built and on GitHub, and
+- **Done:** steps 1–18, 11a and 11b. The site is built and on GitHub, and
   every push to `main` checks, builds and publishes it to the `deploy` branch
   in about 25 s. Career's `make resume` says when the site's copy of the
-  résumé is out of date (step 8).
+  résumé is out of date (step 8). The server's side is on paper and tried on
+  the PC (step 18).
 - **Not live yet.** johnjamieson.ca still points at the old Netlify site,
   which shows the internal system names until the switch (step 24).
 - **Next, in order:**
-  1. **Phase E (steps 18–22), on articuno.** It starts on paper, in
-     `~/Projects/OVHcloud`. John's own read of the platform (the server
-     README's *To do*, item 1) is optional; ask whether he wants it first.
+  1. **Phase E, steps 19–22, on articuno.** Before step 19, the first change
+     on the server, John decides whether to read over the platform first
+     (the server README's *To do*, item 1). Step 19 is the server's BLD-13.
   2. **Phase F (steps 23–28):** the switch.
 - **Open items:**
   - **The 17 website-only bullets** are facts the site may quote, but no page
@@ -44,9 +45,7 @@ server's `SETUP.md`.
     checked without publishing (step 17).
   - **PageSpeed Insights** after launch (step 25).
   - **At step 21,** check `/resume` and `/projects` without the slash on the
-    server.
-  - **The OVHcloud README** still names `~/Projects/personal-web-page`;
-    step 28 fixes it.
+    server. On the PC they gave a `308` to the same with a slash (step 18).
 
 ## Overview
 
@@ -61,8 +60,9 @@ server's `SETUP.md`.
 
 Phases B to D need nothing from the server, so they can run while John reads
 over the platform (the server README's *To do*, item 1). That read is now
-optional: the review chat's three passes found nothing more. Phase E starts
-once John has done it, or decides not to.
+optional: the review chat's three passes found nothing more. Step 18 is on
+paper only, so John started it first, and decides about the read before
+step 19, the first change on the server (2026-11-01).
 
 ## Phase A — Ready
 
@@ -825,12 +825,49 @@ will show it.
 
 ## Phase E — On articuno
 
-These steps start once John has read over the platform, or decided he doesn't
-need to (the server README's *To do*, item 1).
+Step 18 is on paper only. The others start once John has read over the
+platform, or decided he doesn't need to (the server README's *To do*, item
+1).
 
 ### Step 18 — The server's part, on paper first
 
-**Status:** TODO
+**Status:** DONE 2026-11-02, in OVHcloud commit `aa80cfd`. John accepted
+DEC-30 to DEC-32 as written. Nothing changed on the server.
+
+- **The decisions,** from D-13: DEC-30, the small Caddy `static`; DEC-31,
+  the fetch, `site-fetch`; DEC-32, this site on them, with the preview first.
+- **SPEC:** BLD-13 builds `static` (step 19) and BLD-14 the fetch (step 20),
+  each with every file in full. The preview (step 21) has no BLD of its own:
+  it's RCP-4 step 5, in the rewritten recipe for static sites. The registry
+  rows are *planned*, and CON-2, CON-4, CON-6, CON-9 and TPL-7 match.
+- **Also in OVHcloud:** ARCHITECTURE §5.4, §6, §8 and §11 to §13; the
+  README's *To do*, and its projects table, which still described the old
+  site. That fix was planned for step 28, which still marks the site live.
+- **Different from the plan:**
+  - The small Caddy's file is `srv/static/conf/Caddyfile`: the server's
+    CON-6 mounts a folder, never a single file.
+  - `site-fetch` fetches each new commit into a fresh repository, so
+    nothing builds up. git checks the objects as they arrive, which refuses
+    a `..` path, and a submodule is refused as well as a symlink.
+  - `rsync` compares checksums, so unchanged files keep their dates and
+    browsers their copies. It deletes only after the new files land
+    (`--delete-delay` with `--delay-updates`).
+- **Tried on the PC:**
+  - `site-fetch`: 22 checks against a throwaway repository, all passing,
+    the plan's five among them. Then a run against GitHub's real `deploy`
+    branch: 30 files, 492 KB, in 0.6 s, with `build.json` naming `7c0d8ed`,
+    and a second run up to date.
+  - The small Caddy, in podman with Caddy 2.11.7, serving those files: 22
+    checks, alone and behind the main Caddy's real `(public)` snippet. They
+    cover ARCHITECTURE §7.3, plus `/resume` and `/projects` without the
+    slash. One bug turned up, now fixed: a missing `/_astro/` file's 404
+    kept the year-long cache header, so a visitor could have kept a broken
+    page.
+  - The main Caddyfile passed `caddy validate` with the new site file, and
+    again with the public and `www` blocks. `www` answered with a 301 to the
+    bare name.
+- **Until steps 19 to 21** put them on the server, its drift check (INV-7)
+  lists the six new files in `server/` as missing there.
 
 - **Who:** Claude, in `~/Projects/OVHcloud` (its `CLAUDE.md` applies); John
   reviews.
@@ -866,10 +903,11 @@ need to (the server README's *To do*, item 1).
 **Status:** TODO
 
 - **Who:** Claude writes and checks the script; John runs it.
-- **Do, in outline:**
+- **Do:** the server's BLD-13, which has the commands and both files. In
+  outline:
 
   ```bash
-  VPS$ sudo install -d -m 755 /srv/static          # then the two files from server/
+  VPS$ sudo install -d -m 755 /srv/static/conf     # then compose.yaml and conf/Caddyfile
   VPS$ sudo install -d -o john -g john -m 755 /srv/sites/johnjamieson
   VPS$ cd /srv/static && sudo docker compose up -d
   ```
@@ -887,8 +925,8 @@ need to (the server README's *To do*, item 1).
 **Status:** TODO
 
 - **Who:** Claude writes and checks the script; John runs it and gives the
-  one-time OK for `--delete` into `/srv/sites/johnjamieson` (INV-11).
-- **Do, in outline:**
+  one-time OK for `rsync`'s deletes in `/srv/sites/johnjamieson` (INV-11).
+- **Do:** the server's BLD-14. In outline:
   1. Check that `git` and `rsync` are installed.
   2. Install `site-fetch` and the two units from `server/`, then run
      `daemon-reload`.
@@ -908,8 +946,8 @@ need to (the server README's *To do*, item 1).
 **Status:** TODO
 
 - **Who:** Claude writes and checks the script; John runs it, then looks.
-- **Do:** Install `conf/sites/johnjamieson.caddy` with the gated block only,
-  then reload (RCP-13).
+- **Do:** the server's RCP-4 step 5. Install `conf/sites/johnjamieson.caddy`,
+  with the gated block only, then reload (RCP-13).
 - **Expect:**
   - https://johnjamieson.articuno.johnjamieson.ca asks for the passkey, then
     shows the site, on the PC and on the phone.

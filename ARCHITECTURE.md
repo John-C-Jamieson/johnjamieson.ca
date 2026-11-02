@@ -414,8 +414,9 @@ All of this sits on the server's existing design:
 - CON-7: DNS;
 - CON-9: the fetch timer.
 
-The names below are proposed (D-13). They get written into the server's
-`SPEC.md` with John at BUILD step 18.
+The names below are D-13's. Since BUILD step 18 they're in the server's
+`SPEC.md` too: DEC-30 (the small Caddy), DEC-31 (the fetch) and DEC-32 (this
+site on them), with the files in full in its BLD-13 and BLD-14.
 
 ### 7.1 Build and publish, on GitHub
 
@@ -439,26 +440,29 @@ then every five minutes (CON-9's exception for light timers). Each run:
 
 1. Asks GitHub for the `deploy` branch's commit (`git ls-remote`). If it's the
    same as last time, it stops. Most runs end here.
-2. Fetches that one commit into its own clone in
-   `/var/lib/site-fetch/johnjamieson/`.
-3. Refuses the update if it contains a symlink (DEC-28) or has no
-   `index.html`.
-4. Copies it into `/srv/sites/johnjamieson/` with
-   `rsync --delete --delay-updates`, so the new files land together and
-   removed files go.
+2. Fetches that one commit into a fresh repository in its state folder,
+   `/var/lib/site-fetch/johnjamieson/`. git checks each object as it arrives,
+   which refuses paths such as `..`.
+3. Refuses the update if it contains a symlink (DEC-28) or a submodule, or
+   has no `index.html`.
+4. Copies it into `/srv/sites/johnjamieson/` with `rsync`, comparing
+   checksums, so unchanged files keep their dates and browsers their copies.
+   The new files land together (`--delay-updates`), then removed files go
+   (`--delete-delay`).
 5. Records the commit and logs one line.
 
 `site-fetch` takes the site's name, repository and branch, so a later static
 site can reuse it with a new pair of units. Copies of the script and the units
-live in the server repo's `server/` folder (INV-7). Because `--delete` removes
+live in the server repo's `server/` folder (INV-7). Because `rsync` deletes
 files, John okays it once for this folder (INV-11). A `hold` file in the state
 folder pauses updates in an emergency.
 
 ### 7.3 Serving
 
-**The small Caddy** (`static`, DEC-28) is its own container. Nothing is mounted
-in it but `/srv/sites`, read-only. It listens on `127.0.0.1:8001`, with one
-port per static site. For this site it:
+**The small Caddy** (`static`, DEC-28) is its own container. From the server
+it has only `/srv/sites` and its own settings, read-only, and it keeps
+nothing. It listens on `127.0.0.1:8001`, with one port per static site. For
+this site it:
 
 - serves the files;
 - sends the 404 page with a 404 status;
