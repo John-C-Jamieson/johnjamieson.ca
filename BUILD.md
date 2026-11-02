@@ -22,7 +22,7 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-02)
 
-- **Done:** steps 1–21, 23, 11a and 11b. The preview is at
+- **Done:** steps 1–23, 11a and 11b. The preview is at
   `https://johnjamieson.articuno.johnjamieson.ca`, behind the sign-in page,
   and `@` and `www` have a 5-minute TTL. The site is built and on GitHub, and
   every push to `main` checks, builds and publishes it to the `deploy` branch
@@ -32,9 +32,11 @@ server's `SETUP.md`.
 - **Not live yet.** johnjamieson.ca still points at the old Netlify site,
   which shows the internal system names until the switch (step 24).
 - **Next, in order:**
-  1. **Step 22, John's launch review:** every page on the phone and the PC,
-     the printout included, then a go-ahead with a date and a quiet time.
-  2. **Phase F (steps 23–28):** the switch.
+  1. **Step 24, the switch,** at a time John picks after 12:35 on
+     2026-11-02. He changes the two records at Namecheap; Claude checks them
+     and puts the public blocks on the server.
+  2. **Steps 25–28:** after launch, retiring Netlify and the old repo, and
+     tidying the records.
 - **Open items:**
   - **The 17 website-only bullets** are facts the site may quote, but no page
     shows them yet. Later, they could feed more figures (Salumatics' "more
@@ -1005,7 +1007,10 @@ same day (INV-11).
 
 ### Step 22 — The launch review
 
-**Status:** TODO
+**Status:** DONE 2026-11-02. John read the preview on the PC and the phone,
+printed `/resume/`, and said he's happy: the go-ahead to launch. The time is
+set at step 24, after 12:35 that day, when step 23's lower TTL has taken
+hold.
 
 - **Who:** John.
 - **Do:** On the preview, read every page on the phone and on the PC. Check
