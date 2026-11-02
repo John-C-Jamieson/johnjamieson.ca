@@ -92,3 +92,11 @@ principles:
     text: >-
       Work that comes back every month should run itself, from the month-end
       close to journal-entry uploads.
+
+# At the top of every page's footer, worded as on the old site (John,
+# 2026-11-01; BUILD step 11b).
+quote:
+  text: >-
+    Democracy is the worst form of government, except for all the others
+    that have been tried.
+  by: Winston Churchill

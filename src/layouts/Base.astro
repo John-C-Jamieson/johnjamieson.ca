@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { title, description, noindex = false, person = false } = Astro.props;
-const { resume, current } = loadContent();
+const { resume, site: words, current } = loadContent();
 const { name, label, location, profiles } = resume.basics;
 const linkedin = profiles.find((p) => p.network === "LinkedIn");
 const github = profiles.find((p) => p.network === "GitHub");
@@ -101,6 +101,16 @@ try {
     </main>
     <footer class="site-footer">
       <div class="wrap footer-inner">
+        {
+          words.quote && (
+            <figure class="footer-quote">
+              <blockquote>
+                <p>“{words.quote.text}”</p>
+              </blockquote>
+              <figcaption>— {words.quote.by}</figcaption>
+            </figure>
+          )
+        }
         <p class="footer-name">{name} · {location.city}, {location.region}</p>
         <p class="footer-links no-print">
           {linkedin && <a href={linkedin.url}>LinkedIn</a>}
@@ -173,6 +183,21 @@ try {
   .footer-inner {
     display: grid;
     gap: var(--space-2);
+  }
+
+  .footer-quote {
+    max-width: var(--measure);
+    margin: 0 0 var(--space-5);
+  }
+
+  .footer-quote blockquote {
+    margin: 0;
+    font-size: var(--step-0);
+    line-height: 1.5;
+  }
+
+  .footer-quote figcaption {
+    margin-top: var(--space-2);
   }
 
   .footer-name {

@@ -95,6 +95,8 @@ export const siteSchema = z.strictObject({
   work: z.array(z.strictObject({ title: text, source })),
   phases: z.array(z.strictObject({ label: text, jobs: z.array(text).min(1) })).min(1),
   principles: z.array(z.strictObject({ title: text, text })),
+  // John's quote, at the top of every page's footer
+  quote: z.strictObject({ text, by: text }).optional(),
 });
 
 export type Resume = z.infer<typeof resumeSchema>;

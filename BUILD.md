@@ -22,9 +22,9 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-01)
 
-- **Done:** steps 1–7, 9–17 and 11a. The site is built and on GitHub, and
-  every push to `main` checks, builds and publishes it to the `deploy` branch
-  in about 25 s.
+- **Done:** steps 1–7, 9–17, 11a and 11b. The site is built and on GitHub,
+  and every push to `main` checks, builds and publishes it to the `deploy`
+  branch in about 25 s.
 - **Not live yet.** johnjamieson.ca still points at the old Netlify site,
   which shows the internal system names until the switch (step 24).
 - **Next, in order:**
@@ -511,6 +511,35 @@ prototyped.
   JavaScript.
 - **Expect:** each card opens and closes by mouse, touch and keyboard, and
   the build's checks pass.
+- **Record:** here, and ARCHITECTURE §5.2.
+
+### Step 11b — The footer's quote
+
+**Status:** DONE 2026-11-01.
+
+- **Why:** the old site's footer opened with John's Churchill quote
+  (`footerQuote`, in `personal-web-page`'s `frontend/src/data/profile.ts`).
+  The plan for the new footer left it out without asking him, and John
+  noticed.
+- **Back where it was,** at the top of the footer on every page. The footer
+  stays out of print.
+- **In `site.yaml`** (`quote`: `text` and `by`), like the rest of the site's
+  words, so the checks cover it. It's optional in the schema: delete it and
+  the footer goes without.
+- **The wording is the old site's, by John's choice.** Hansard's record of
+  the speech (11 November 1947) differs: "it has been said that democracy
+  is the worst form of Government except all those other forms that have
+  been tried from time to time". So Churchill was repeating an older saying.
+  John chose the familiar version, knowing this.
+- **No year in the credit line:** the facts check (D-11) stops the build on
+  a number that isn't in the résumé.
+- **Checked:** at 375 px and 1280 px, in light and dark, on the home and
+  résumé pages. `npm run check` shows 0 errors and 20 tests passing, and the
+  build passes its checks.
+
+- **Who:** Claude; John chooses the wording.
+- **Do:** put the old site's quote back in the footer.
+- **Expect:** it shows on every page, and the checks pass.
 - **Record:** here, and ARCHITECTURE §5.2.
 
 ### Step 12 — The résumé page, old links and 404

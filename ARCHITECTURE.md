@@ -252,6 +252,7 @@ In order, with where each part comes from:
    an audit trail; automate the second time; speak both finance and SQL.
 6. **Skills and education** (facts), in the résumé's own groups.
 7. **Footer.** It has:
+   - John's Churchill quote, as on the old site (site; BUILD step 11b);
    - Toronto, Ontario, plus links to LinkedIn and GitHub;
    - "Résumé last updated <month year>", taken from when `content/resume.json`
      last changed;
