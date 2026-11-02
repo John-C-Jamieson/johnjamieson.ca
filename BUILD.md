@@ -22,21 +22,21 @@ server's `SETUP.md`.
 
 ## Where things stand (2026-11-02)
 
-- **Done:** steps 1–23, 11a and 11b. The preview is at
-  `https://johnjamieson.articuno.johnjamieson.ca`, behind the sign-in page,
-  and `@` and `www` have a 5-minute TTL. The site is built and on GitHub, and
+- **Done:** steps 1–24, 11a and 11b. **johnjamieson.ca is live on
+  articuno** (2026-11-02), with `www` redirecting to it; the gated preview is
+  still at `https://johnjamieson.articuno.johnjamieson.ca`. The site is built
+  and on GitHub, and
   every push to `main` checks, builds and publishes it to the `deploy` branch
   in about 25 s. Career's `make resume` says when the site's copy of the
   résumé is out of date (step 8). The server's side is on paper and tried on
   the PC (step 18).
-- **Not live yet.** johnjamieson.ca still points at the old Netlify site,
-  which shows the internal system names until the switch (step 24).
+- **Netlify still serves the old site** at `john-jamieson.netlify.app`,
+  internal system names included, until step 26.
 - **Next, in order:**
-  1. **Step 24, the switch,** at a time John picks after 12:35 on
-     2026-11-02. He changes the two records at Namecheap; Claude checks them
-     and puts the public blocks on the server.
-  2. **Steps 25–28:** after launch, retiring Netlify and the old repo, and
-     tidying the records.
+  1. **John, on his phone on mobile data:** open johnjamieson.ca (step 24).
+  2. **Step 25:** LinkedIn's Post Inspector, and PageSpeed Insights.
+  3. **Steps 26–28,** a day or two later: retire Netlify and the old repo,
+     then remove the preview and tidy the records.
 - **Open items:**
   - **The 17 website-only bullets** are facts the site may quote, but no page
     shows them yet. Later, they could feed more figures (Salumatics' "more
@@ -1041,7 +1041,26 @@ hold.
 
 ### Step 24 — The switch
 
-**Status:** TODO
+**Status:** DONE 2026-11-02, about 13:00: johnjamieson.ca is live on
+articuno. The server's SETUP 29, OVHcloud commit `7b404e4`. Still to come:
+John's look from his phone on mobile data.
+
+- **DNS, John at Namecheap, about 12:55:** `ALIAS @` and `CNAME www`, both
+  to `articuno.johnjamieson.ca`, at 5 minutes. At 12:58, Namecheap and
+  `1.1.1.1` answered for both names with articuno's IPv4 and IPv6. **The
+  ALIAS answers IPv6**, so it stays, and CON-7 holds whole (D-14).
+- **The site file:** the public block and the `www` redirect, beside the
+  gated preview. The server's script refused to run until both names
+  resolved to articuno. Both certificates came within four seconds of the
+  reload.
+- **From the PC:** `https://johnjamieson.ca` `200` over HTTP/2 and HTTP/3,
+  with HSTS and the anti-framing headers; `www.johnjamieson.ca/resume/` a
+  `301` to `https://johnjamieson.ca/resume/`; plain HTTP a `308` to HTTPS;
+  Let's Encrypt certificates for both names, to 2027-01-31; `build.json`
+  naming `4ba2d64`, the latest commit on `main`.
+- **Recorded in OVHcloud:** SETUP 29, SPEC §4.1 (public since 2026-11-02,
+  with John's OK) and §4.4, the README, and `namecheap-dns.xlsx` (the two
+  Netlify records on its *Removed* sheet).
 
 - **Who:** John, at Namecheap and on the server; Claude checks each part.
 - **Do:**
@@ -1074,7 +1093,12 @@ hold.
 
 ### Step 25 — After launch
 
-**Status:** TODO
+**Status:** started 2026-11-02. Claude's checks passed at the switch:
+`/resume` and `/projects` get a `308` to the same with a slash, and the
+`www.` versions a `301` to the bare name; `/projects/` leads home; the
+sitemap, `robots.txt` and the preview image load; a missing page gets the
+404 page. Left: John's LinkedIn Post Inspector check, and PageSpeed
+Insights (step 14).
 
 - **Who:** Claude, then John.
 - **Do:**
